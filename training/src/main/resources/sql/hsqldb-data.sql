@@ -1,0 +1,1 @@
+INSERT INTO EMAIL_SUB (email) VALUES ('test@email.com')

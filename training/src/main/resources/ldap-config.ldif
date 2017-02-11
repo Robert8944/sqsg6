@@ -1,0 +1,12 @@
+dn: ou=people,dc=sqs,dc=test
+objectclass: top
+objectclass: organizationalUnit
+ou: people
+
+dn: uid=test,dc=sqs,dc=test
+objectclass: top
+objectclass: person
+cn: Test User
+sn: Test
+uid: Test
+userPassword: testpass

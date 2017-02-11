@@ -1,0 +1,19 @@
+.header-container {
+	padding: 0 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.logo-container {
+	display: flex;
+	justify-content: center;
+}
+
+.logo {
+	margin: 25px;
+}
+
+.greeting-container{
+}
