@@ -1,0 +1,218 @@
+@import url(bootstrap.css);
+
+/*MOBILE CSS*/
+
+#heading nav{
+	background-color: #006a67;
+	margin-bottom: 0px;
+	color: #ffffff;
+}
+
+#heading .nav a{
+	color: #ffffff;
+	font-size: 20px;
+	display: inline;
+}
+
+#heading .nav a:visited{
+	color: #ffffff;
+}
+
+#heading .nav a:hover{
+	color: #62a5c1;
+}
+
+/*#heading nav a li{
+	margin-top: 10px;
+}*/
+
+#heading .nav li a img{
+	height: 45px;
+	width: 80px;
+	margin: auto;
+}
+
+.navbar-default .navbar-toggle {
+	border-color: transparent !important;
+}
+.navbar-default .navbar-toggle:hover{
+	background-color: #62a5c1 !important;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #ffffff !important;
+}
+
+#home_page{
+	text-align: center;
+}
+
+.form-group{
+	padding-top:20px;
+	padding-left: 5px;
+}
+form label{
+	color: #ffffff;
+	padding-top: 0px !important;
+	margin-bottom: 0px;
+	margin-right: 0px;
+	padding-left: 0px;
+	margin-left: 0px;
+}
+
+form input{
+	border: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	color: #000;
+}
+
+form {
+	margin-top:20px;
+	color: #fff;
+	background-color: #006a67;
+}
+
+.banner {
+	height: 200px;
+	background-color: #31708f;
+}
+
+.sqs_blue_line{
+	background-color: #62a5c1;
+}
+
+#inventory form{
+	display: inline;
+}
+
+#product h4{
+	display: inline;
+}
+
+table{
+	width: 90%;
+	left: 5%;
+	right: 5%;
+	position: relative;
+}
+
+#product .panel{
+	background-color: #F8F8F8;
+	padding:10px;
+}
+
+
+#heading .navbar-right a {
+	padding:0px;
+	padding-right: 2em;
+}
+form input {
+	border-left-style: none;
+	border-bottom-style: solid;
+	border-bottom-color: #fff;
+	border-bottom-width: thin;
+	background-color: #006a67;
+	color: #ffffff;
+	outline: none;
+}
+
+/*DESKTOP*/
+
+/*@media only screen and (min-width: 768px) {
+	#heading nav{
+		background-color: #006a67;
+		margin-bottom: 0px;
+		color: #ffffff;
+	}
+
+	#heading nav a{
+		color: #ffffff;
+		font-size: 20px;
+		display: inline;
+	}
+
+	#heading .nav a:visited{
+		color: #ffffff;
+	}
+
+	#heading .nav a:hover{
+		color: #62a5c1;
+	}
+
+	/*#heading nav a li{
+		margin-top: 10px;
+	}*/
+
+/*#heading .nav li a img{
+    height: 45px;
+    width: 80px;
+}
+
+#home_page{
+    text-align: center;
+}
+
+form{
+    background-color: #006a67;
+}
+.form-group{
+    padding-top:20px;
+}
+form label{
+    color: #ffffff;
+    padding-top: 0px !important;
+    margin-bottom: 0px;
+    margin-right: 0px;
+}
+
+form input{
+    border: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    color: #000;
+}
+
+form {
+    margin-top:20px;
+    color: #fff;
+
+}
+
+.banner {
+    height: 200px;
+    background-color: #31708f;
+}
+
+.sqs_blue_line{
+    background-color: #62a5c1;
+}
+
+#inventory form{
+    display: inline;
+}
+
+#product h4{
+    display: inline;
+}
+
+table{
+    width: 90%;
+    left: 5%;
+    right: 5%;
+    position: relative;
+}
+
+#product .panel{
+    background-color: #F8F8F8;
+    padding:10px;
+}
+
+
+#heading .navbar-right a {
+    padding:0px;
+    padding-right: 2em;
+}
+
+}*/
+
