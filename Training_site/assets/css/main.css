@@ -8,17 +8,28 @@
 	color: #ffffff;
 }
 
+#heading2 nav{
+	background-color: #006a67;
+	margin-bottom: 0px;
+	color: #ffffff;
+}
+
 #heading .nav a{
 	color: #ffffff;
 	font-size: 20px;
 	display: inline;
 }
 
-#heading .nav a:visited{
+#heading2 .nav a{
+	color: #ffffff;
+	font-size: 20px;
+}
+
+#heading2 .nav a:visited{
 	color: #ffffff;
 }
 
-#heading .nav a:hover{
+#heading2 .nav a:hover{
 	color: #62a5c1;
 }
 
@@ -27,6 +38,12 @@
 }*/
 
 #heading .nav li a img{
+	height: 45px;
+	width: 80px;
+	margin: auto;
+}
+
+#heading2 .nav li a img{
 	height: 45px;
 	width: 80px;
 	margin: auto;
@@ -107,6 +124,12 @@ table{
 	padding:0px;
 	padding-right: 2em;
 }
+
+#heading2 .navbar-right a {
+	padding:0px;
+	padding-right: 2em;
+}
+
 form input {
 	border-left-style: none;
 	border-bottom-style: solid;
