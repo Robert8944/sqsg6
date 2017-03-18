@@ -95,7 +95,7 @@ if(isset($_POST['submit'])) {
 
 <html>
 <div id="home_page">
-  <body>
+  <body class="container">
     <div>
 		<?php
 			if (isset($_SESSION['user'])){	//prompts user with following messages if/if not logged in
