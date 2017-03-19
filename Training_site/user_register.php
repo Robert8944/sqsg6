@@ -69,16 +69,18 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 ?>
 
 <html>
+<!DOCTYPE html>
 <div class="container">
     <form  class="form-horizontal" action="" method="post">
 
-
+            
             <div class="form-group">
                 <label class="control-label col-sm-5" >Name</label>
                 <div class="col-sm-7">
                 <input type="text" name="name" size="30" /></label>
                     </div>
             </div>
+
 
             <div class="form-group">
                 <label class="control-label col-sm-5">Password</label>

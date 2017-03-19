@@ -55,6 +55,7 @@ if(isset($_POST['submit'])) {          //waits for button press
 ?>
 
 <html>
+<!DOCTYPE html>
 <form  class= "form-horizontal"action="" method="post">
 
 
