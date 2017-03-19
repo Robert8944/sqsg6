@@ -42,14 +42,14 @@ if(isset($_POST['submit'])) {          //waits for button press
 <form  class= "form-horizontal"action="" method="post">
 
 
-    <div class="form-group">
+    <div class="form-group" id="inputbox">
         <label class="control-label col-sm-5">Email</label>
         <div class="col-sm-7">
             <input type="text" name="email" size="30" </label>
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" id="inputbox">
         <label class="control-label col-sm-5">Password</label>
         <div class="col-sm-7">
             <input type="password" name="password" size="30" /></label>
@@ -59,7 +59,7 @@ if(isset($_POST['submit'])) {          //waits for button press
 
 
 
-    <div class="form-group">
+    <div class="form-group" id="inputbox">
         <div class="control-label col-sm-6">
             <input class="btn btn-default" type="submit" name="submit" value="Send"/></label>
         </div>

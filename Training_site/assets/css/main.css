@@ -94,6 +94,12 @@ form {
 	background-color: #006a67;
 }
 
+#inputbox {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
 .banner {
 	height: 200px;
 	background-color: #31708f;
