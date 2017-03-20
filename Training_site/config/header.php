@@ -51,9 +51,12 @@
               </li>
             </ul>
 
-             <?php if(isset($_SESSION['name'])) echo "<div class='col-sm-4'> <li> Hello ". $_SESSION['name']."</li></div> <br>"; ?>
-            <ul class="nav navbar-nav navbar-right">
+             
+            <ul class="nav navbar-nav navbar-right" >
+              <div style="display:flex;justify-content:flex-end;align-items:center">
+              <?php if(isset($_SESSION['name'])) echo "<div class='col-sm-4'> <li> Hello ". $_SESSION['name']."</li></div> <br>"; ?>
               <li ><a href="./"> <img src="assets/images/logo.png" alt="SQS logo"></a></li>
+            </div>
             </ul>
 
           </div><!--/.nav-collapse -->

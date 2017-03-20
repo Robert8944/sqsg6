@@ -72,51 +72,54 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 
 
 <html>		
-<form  class= "form-horizontal"action="" method="post">
-	<?php
-		//displays info
-		$UID = $_SESSION['user'];
-		$query = "select Name, Email from user where UID = ?";
-		$stmt = $mysqli->prepare($query);
-		$stmt->bind_param("s",$UID);
-		$stmt->execute();
-		$stmt->bind_result($name, $email);
-		$stmt->fetch();
-		
-		echo '<div class="form-group">';
-		echo '<label class="control-label col-sm-5" >Name</label>';
-		echo '<div class="col-sm-5">';
-		if(isset($_POST['edit'])) {
-			echo '<input type="name" name="name" size="30" value="'.$name.'" />';
-		}
-		else {
-			echo $name;
-		}
-		echo '</div></div>';
-		
-		echo '<div class="form-group">';
-		echo '<label class="control-label col-sm-5" >Email</label>';
-		echo '<div class="col-sm-5">';
-		if(isset($_POST['edit'])) {
-			echo '<input type="email" name="email" size="30" value="'.$email.'" />';
-		}
-		else {
-			echo $email;
-		}
-		echo '</div></div>';
-		$stmt->close();
-	?>
-	<div class="form-group">
-		<div class="control-label col-sm-6">
-			<?php
-				if (isset($_POST['edit'])) {
-					echo '<input class="btn btn-default" type="submit" name="submit" value="Save Information"/>';
-				}
-				else {
-					echo '<input class="btn btn-default" type="submit" name="edit" value="Edit Profile"/>';
-				}
-			?>
+<div class="container">
+	<form  class= "form-horizontal"action="" method="post">
+		<?php
+			//displays info
+			$UID = $_SESSION['user'];
+			$query = "select Name, Email from user where UID = ?";
+			$stmt = $mysqli->prepare($query);
+			$stmt->bind_param("s",$UID);
+			$stmt->execute();
+			$stmt->bind_result($name, $email);
+			$stmt->fetch();
+			
+			echo '<div id="inputbox" class="form-group">';
+			echo '<label class="control-label col-sm-5" >Name</label>';
+			echo '<div class="col-sm-5">';
+			if(isset($_POST['edit'])) {
+				echo '<input type="name" name="name" size="30" value="'.$name.'" />';
+			}
+			else {
+				echo $name;
+			}
+			echo '</div></div>';
+			
+			echo '<div id="inputbox" class="form-group">';
+			echo '<label class="control-label col-sm-5" >Email</label>';
+			echo '<div class="col-sm-5">';
+			if(isset($_POST['edit'])) {
+				echo '<input type="email" name="email" size="30" value="'.$email.'" />';
+			}
+			else {
+				echo $email;
+			}
+			echo '</div></div>';
+			$stmt->close();
+		?>
+
+			<div id="inputbox" class="form-group">
+				<div class="control-label col-sm-6" id="centertext">
+					<?php
+						if (isset($_POST['edit'])) {
+							echo '<input class="btn btn-default" type="submit" name="submit" value="Save Information"/>';
+						}
+						else {
+							echo '<input class="btn btn-default" type="submit" name="edit" value="Edit Profile"/>';
+						}
+					?>
+				</div>
+			</div>
 		</div>
-	</div>
 </form>
 
