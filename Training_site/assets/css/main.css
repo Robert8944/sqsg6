@@ -45,8 +45,10 @@
 
 #heading2 .nav li a img{
 	height: 45px;
-	width: 80px;
+	width: 95px;
 	margin: auto;
+	padding-left: 15px;
+	padding-right: -15px;
 }
 
 .navbar-default .navbar-toggle {
@@ -86,8 +88,31 @@ form input{
 
 form {
 	margin-top:20px;
+	padding-top:20px;
+	padding-bottom:20px;
 	color: #fff;
 	background-color: #006a67;
+}
+
+#inputbox {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
+#centerbox {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
+#welcomemessage {
+	padding-right: 20px;
+	padding-top: 20px;
+}
+
+#centertext {
+	text-align: center;
 }
 
 .banner {

@@ -94,6 +94,7 @@ if(isset($_POST['submit'])) {
 ?>
 
 <html>
+<!DOCTYPE html>
 <div id="home_page">
   <body class="container">
     <div>
