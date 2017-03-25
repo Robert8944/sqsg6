@@ -23,8 +23,8 @@ feature_loader("test", $_SESSION["user"]);
 		$level = 0;
 		$sql = "SELECT * FROM user WHERE UID=".$uid.";";
 		$result = $mysqli->query($sql);
-		echo "uid: ".$uid." ";
-		echo "num rows: ".$result->num_rows." ";
+//		echo "uid: ".$uid." ";
+//		echo "num rows: ".$result->num_rows." ";
 		if($result->num_rows > 0)
 		{
 			while($row = $result->fetch_assoc())
