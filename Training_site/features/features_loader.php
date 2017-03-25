@@ -1,7 +1,8 @@
 <?php
 //include "../../sql_connector.php";
-include $_SERVER["DOCUMENT_ROOT"].'/'.'sql_connector.php';
+include $_SERVER["DOCUMENT_ROOT"].'/'.'sqsg6/sql_connector.php';
 //echo "global xyz is ".$xyz;
+//echo "sql connector: ".$_SERVER["DOCUMENT_ROOT"].'/'.'sqsg6/sql_connector.php'."<br />";
 
 
 /**
@@ -25,7 +26,7 @@ function get_version_number($name, $uid){
 		}
 	}
 	*/
-//	echo "uid: ".$uid." ";
+	echo "uid: ".$uid." ";
 	$sql2 = "SELECT * FROM features_available WHERE name=\"".$name."\";";
 	$result2 = $mysqli->query($sql2);
 	$feature_number = 0;
@@ -63,6 +64,7 @@ function feature_loader($name, $user_email){
 
 	global $mysqli;
 	$version_number = get_version_number($name, $user_email);
+	echo "Correct features loader loaded.";
 	/*
 	//$feature_number = 1;
 	*/
@@ -72,10 +74,10 @@ function feature_loader($name, $user_email){
 //	$sql = "SELECT * FROM features_available WHERE id=".$feature_num.";";
 	//echo "name is ".$name." ";
 	$sql = "SELECT * FROM features_available WHERE name=\"".$name."\";";
-	//echo "sql is ".$sql." ";
+	echo "sql is ".$sql." ";
 //	echo "Test var is ".$test_var_2;
 	$result = $mysqli->query($sql);
-	//echo "Result num rows: ".$result->num_rows;
+	echo "Result num rows: ".$result->num_rows;
 	
 	if($result->num_rows > 0)
 	{
@@ -91,9 +93,9 @@ function feature_loader($name, $user_email){
 			}
 			$file_name = $name."_".$version_number."_".$file_it_appears_in."_".$platform.".php";
 		//	echo "file it appears in: ".$file_it_appears_in;
-			$file_name = $_SERVER["DOCUMENT_ROOT"].'/'.'Training_site/features/'.$file_name;
+			$file_name = $_SERVER["DOCUMENT_ROOT"].'/'.'sqsg6/Training_site/features/'.$file_name;
 
-		//	echo "file name: ".$file_name;
+			echo "file name: ".$file_name;
 
 			include $file_name;
 			break;
