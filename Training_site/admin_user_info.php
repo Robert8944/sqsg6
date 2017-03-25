@@ -111,6 +111,37 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 		<button class = "btn btn-primary" type="submit" name ="UID" value="'.$row['UID'].'">Edit</button></td>  </form> </tr>';
     }
 }
+echo "</table>";
+	echo '<table class="table tabel-striped">';
+		echo "<tr>";
+		echo "<td>";
+		//echo "<p>";
+		echo "<form action=\"group_operations/add_to_group.php\">";
+		echo "User: <input type=\"text\" name=\"username\" id=\"username\">";
+		//echo "<br />";
+		echo "Group to add to: <input type=\"text\" name=\"group_name\" id=\"group_name\">";
+		//echo "<br />";
+		echo "<button class = \"btn btn-primary\" type=\"submit\" value=\"Add\"> Add </button>";
+		echo "</form>";
+		//echo "</p>";
+		echo "</td>";
+		echo "</tr>";
+
+		echo "<tr>";
+		echo "<td>";
+		//echo "<p>";
+		echo "<form action=\"group_operations/remove_from_group.php\">";
+		echo "User: <input type=\"text\" name=\"username\" id=\"username\">";
+		//echo "<br />";
+		echo "Group to remove from: <input type=\"text\" name=\"group_name\" id=\"group_name\">";
+		//echo "<br />";
+		echo "<button class = \"btn btn-primary\" type=\"submit\" value=\"Remove\"> Remove </button>";
+		//echo "<input type=\"submit\" value=\"Remove\">";
+		echo "</form>";
+		//echo "</p>";
+		echo "</td>";
+		echo "</tr>";
+	echo '</table>';
 
 	//close database
 $mysqli->close();
