@@ -1,7 +1,8 @@
 <?php
 //include "../../sql_connector.php";
-include $_SERVER["DOCUMENT_ROOT"].'/'.'sql_connector.php';
+include $_SERVER["DOCUMENT_ROOT"].'/'.'sqsg6/sql_connector.php';
 //echo "global xyz is ".$xyz;
+//echo "sql connector: ".$_SERVER["DOCUMENT_ROOT"].'/'.'sqsg6/sql_connector.php'."<br />";
 
 
 /**
@@ -63,6 +64,7 @@ function feature_loader($name, $user_email){
 
 	global $mysqli;
 	$version_number = get_version_number($name, $user_email);
+	//echo "Correct features loader loaded.";
 	/*
 	//$feature_number = 1;
 	*/
@@ -91,9 +93,9 @@ function feature_loader($name, $user_email){
 			}
 			$file_name = $name."_".$version_number."_".$file_it_appears_in."_".$platform.".php";
 		//	echo "file it appears in: ".$file_it_appears_in;
-			$file_name = $_SERVER["DOCUMENT_ROOT"].'/'.'Training_site/features/'.$file_name;
+			$file_name = $_SERVER["DOCUMENT_ROOT"].'/'.'sqsg6/Training_site/features/'.$file_name;
 
-		//	echo "file name: ".$file_name;
+			//echo "file name: ".$file_name;
 
 			include $file_name;
 			break;

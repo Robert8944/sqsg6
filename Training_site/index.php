@@ -368,6 +368,11 @@ if(isset($_POST['submit'])) {
 		</form>
 	</div>
   </body>
+<?php
+
+include "footer.php";
+
+?>
 </div>
 </html>
 

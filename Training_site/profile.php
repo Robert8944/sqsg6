@@ -77,13 +77,24 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 		<?php
 			//displays info
 			$UID = $_SESSION['user'];
-			$query = "select Name, Email from user where UID = ?";
+			$query = "select Name, Email, level from user where UID = ?";
 			$stmt = $mysqli->prepare($query);
 			$stmt->bind_param("s",$UID);
 			$stmt->execute();
-			$stmt->bind_result($name, $email);
+			$stmt->bind_result($name, $email, $level);
 			$stmt->fetch();
-			
+			$stmt->close();			
+
+
+			$query = "select title from levels where id = ?";
+			$stmt = $mysqli->prepare($query);
+			$stmt->bind_param("s",$level);
+			$stmt->execute();
+			$stmt->bind_result($rank);
+			$stmt->fetch();
+	
+
+			//$rank = $level;
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Name</label>';
 			echo '<div class="col-sm-5">';
@@ -105,6 +116,19 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				echo $email;
 			}
 			echo '</div></div>';
+			
+			echo '<div id="inputbox" class="form-group">';
+			echo '<label class="control-label col-sm-5" >Rank</label>';
+			echo '<div class="col-sm-5">';
+			if(isset($_POST['edit'])) {
+			//	echo '<input type="email" name="email" size="30" value="'.$email.'" />';
+				echo $rank;			
+			}
+			else {
+				echo $rank;
+			}
+			echo '</div></div>';
+	
 			$stmt->close();
 		?>
 
