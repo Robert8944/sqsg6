@@ -76,10 +76,10 @@ if(isset($_POST['submit'])) {
 			$stmt->execute();
 			$stmt->close();
 			if ($recieved == true) {
-				echo '<h3 style = "text-align: center">Message sent!</h3>';
+				echo '<h3 style = "text-align: center">You should recieve a confirmation text soon.</h3>';
 			}
 			else{
-				echo '<h3 style = "text-align: center">Message not sent.</h3>';
+				echo '<h3 style = "text-align: center">There was an error in sending the confirmation text. Your phone number may have been entered incorrectly, or an error may exist within the website backend.</h3>';
 			}
 		}
 		else {
