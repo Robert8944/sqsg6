@@ -1,6 +1,6 @@
 <?php
 //include "../../sql_connector.php";
-include $_SERVER["DOCUMENT_ROOT"].'/'.'sqsg6/sql_connector.php';
+include '/var/www/html/sqsg6/sql_connector.php';
 //echo "global xyz is ".$xyz;
 //echo "sql connector: ".$_SERVER["DOCUMENT_ROOT"].'/'.'sqsg6/sql_connector.php'."<br />";
 
