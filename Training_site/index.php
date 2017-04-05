@@ -13,7 +13,6 @@ if(isset($_SESSION['SubscriptionReport']))
 {
 	echo $_SESSION['SubscriptionReport'];
 	unset($_SESSION['SubscriptionReport']);
-<<<<<<< HEAD
 
 }
 

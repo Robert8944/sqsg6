@@ -21,13 +21,13 @@ if(isset($_POST['submit'])) {
 	$subscriptionReport = "";
 
 	//Replace the above default values with the form information.
-	/*
+	
 	$countryCode = $_POST["countrycode"]; //corresponds to a <select> tag 
-	$carrier = "carrier"; //corresponds to a <select> tag
-	$areaCode = "areacode"; //corresponds to an <input> tag
-	$numberPart1 = "numberpart1"; //corresponds to an <input> tag
-	$numberPart2 = "numberpart2"; //corresponds to an <input> tag
-	*/
+	$carrier = $_POST["carrier"]; //corresponds to a <select> tag
+	$areaCode = $_POST["areacode"]; //corresponds to an <input> tag
+	$numberPart1 = $_POST["numberpart1"]; //corresponds to an <input> tag
+	$numberPart2 = $_POST["numberpart2"]; //corresponds to an <input> tag
+	
 
 	$CountryCode = $mysqli->real_escape_string(trim($countryCode));
 	$Carrier = $mysqli->real_escape_string(trim($carrier));
