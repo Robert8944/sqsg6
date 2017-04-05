@@ -5,8 +5,8 @@ if(isset($_POST['submit'])) {
 	//credit for this function is given to http://stackoverflow.com/questions/6516902/how-to-get-response-using-curl-in-php	
     $NumberInputError = False;
 	$PhoneNumber = "";
-	$NumberInDatabase = false;
-	$CountryCode = $mysqli->real_escape_string(trim($_POST['countrycode']));
+	$NumberInDatabase = False;
+/*	$CountryCode = $mysqli->real_escape_string(trim($_POST['countrycode']));
 	$Carrier = $mysqli->real_escape_string(trim($_POST['carrier']));
 	
 	//build the phone number string from the fields the user filled out
@@ -84,10 +84,12 @@ if(isset($_POST['submit'])) {
 		}
     }
     else {
-        echo '<h2 style = "text-align: center">Phone number enetered was invalid. Please enter numbers only!<h2>';
+        echo '<h2 style = "text-align: center">Phone number entered was invalid. Please enter numbers only!<h2>';
     }
-
+*/
 }
+
+echo "Form page 2.";
 ?>
 
 
