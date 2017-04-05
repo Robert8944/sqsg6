@@ -2,15 +2,33 @@
 require_once('../sql_connector.php');?>
 
 <?php
-if(isset($_SESSION['SMSReport']))
-{
-	echo $_SESSION['SMSReport'];
-	unset($_SESSION['SMSReport']);
-}
-if(isset($_SESSION['SubscriptionReport']))
-{
-	echo $_SESSION['SubscriptionReport'];
-	unset($_SESSION['SubscriptionReport']);
+			$text_email = $email_prefix.'@'.$email_suffix;
+			
+			//send an introductory text
+			$message = 'Welcome to the SQS text subscription list! From now on, you will receive important updates about the site.';
+			$headers = "From: SQS Training\r\n";
+			$recieved = mail($text_email,'SQS Subscription Confirmation',$message,$headers);
+
+			//then, add the number and carrier to the database
+			$stmt = $mysqli->prepare('INSERT INTO subscriber (phone_number, carrier, international_code) VALUES (?,?,?)');
+			$stmt->bind_param("sss", $PhoneNumber,$Carrier,$CountryCode);
+			$stmt->execute();
+			$stmt->close();
+			if ($recieved == true) {
+				echo '<h3 style = "text-align: center">You should recieve a confirmation text soon.</h3>';
+			}
+			else{
+				echo '<h3 style = "text-align: center">There was an error in sending the confirmation text. Your phone number may have been entered incorrectly, or an error may exist within the website backend.</h3>';
+			}
+		}
+		else {
+			echo '<h2 style = "text-align: center">Number is already subscribed to our service. Thanks for your eagerness to stay updated! <h2>';
+		}
+    }
+    else {
+        echo '<h2 style = "text-align: center">Phone number enetered was invalid. Please enter numbers only!<h2>';
+    }
+
 }
 
 ?>
