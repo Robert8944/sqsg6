@@ -38,7 +38,6 @@ require_once('../sql_connector.php');?>
 <?php
 
 include "footer.php";
-
 ?>
 </div>
 </html>
