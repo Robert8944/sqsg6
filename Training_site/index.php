@@ -1,13 +1,32 @@
-<?php include 'config/header.php';
-require_once('../sql_connector.php');?>
 
+<?php include 'config/header.php';
+require_once('../sql_connector.php');
+
+?>
 <?php
-			$text_email = $email_prefix.'@'.$email_suffix;
+if(isset($_SESSION['SMSReport']))
+{
+	echo $_SESSION['SMSReport'];
+	unset($_SESSION['SMSReport']);
+}
+if(isset($_SESSION['SubscriptionReport']))
+{
+	echo $_SESSION['SubscriptionReport'];
+	unset($_SESSION['SubscriptionReport']);
+
+}
+
+
+?>
+<?php
+/*			$text_email = $email_prefix.'@'.$email_suffix;
 			
 			//send an introductory text
 			$message = 'Welcome to the SQS text subscription list! From now on, you will receive important updates about the site.';
 			$headers = "From: SQS Training\r\n";
 			$recieved = mail($text_email,'SQS Subscription Confirmation',$message,$headers);
+
+//			echo "Test var: ".$testvar."<br />";
 
 			//then, add the number and carrier to the database
 			$stmt = $mysqli->prepare('INSERT INTO subscriber (phone_number, carrier, international_code) VALUES (?,?,?)');
@@ -30,7 +49,7 @@ require_once('../sql_connector.php');?>
     }
 
 }
-
+*/
 ?>
 
 <html>
@@ -38,7 +57,8 @@ require_once('../sql_connector.php');?>
 <div id="home_page">
   <body class="container">
     <div>
-		<?php
+	<?php
+
 			if (isset($_SESSION['user'])){	//prompts user with following messages if/if not logged in
 				echo '<h2>Hey there! Click the links on the header to navigate the site.</h2>';
 			}
@@ -46,9 +66,10 @@ require_once('../sql_connector.php');?>
 				echo '<h2>Welcome! Please login or sign up using the navigation bar at the top of the screen.</h2>';
 			}
 
-		?>
+	?>
 		<br/><br/>
 	<?php
+
 		if(isset($_SESSION['user']))
 		{
 			include("phone_signup.php");
@@ -69,7 +90,7 @@ require_once('../sql_connector.php');?>
   </body>
 <?php
 
-include "footer.php";
+include "footer.php"; 
 ?>
 </div>
 </html>

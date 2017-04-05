@@ -9,7 +9,8 @@ if(isset($_POST['submit'])) {
     	$NumberInputError = False;
 	$PhoneNumber = "";
 	$NumberInDatabase = False;
-	
+
+	//Default values for the information to put in the table
 	$countryCode = "1";
 	$carrier = "VERIZON";
 	$areaCode = "859";
@@ -18,6 +19,15 @@ if(isset($_POST['submit'])) {
 	
 	$smsReport = "";
 	$subscriptionReport = "";
+
+	//Replace the above default values with the form information.
+	/*
+	$countryCode = $_POST["countrycode"]; //corresponds to a <select> tag 
+	$carrier = "carrier"; //corresponds to a <select> tag
+	$areaCode = "areacode"; //corresponds to an <input> tag
+	$numberPart1 = "numberpart1"; //corresponds to an <input> tag
+	$numberPart2 = "numberpart2"; //corresponds to an <input> tag
+	*/
 
 	$CountryCode = $mysqli->real_escape_string(trim($countryCode));
 	$Carrier = $mysqli->real_escape_string(trim($carrier));
