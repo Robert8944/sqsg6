@@ -5,9 +5,9 @@
 */
 $config = parse_ini_file( 'config.ini' );
 
-$docroot = $config['docroot'];
 
-$features_loader_path =  $docroot .'sqsg6/Training_site/features/features_loader.php';
+//$features_loader_path =  $_SERVER["DOCUMENT_ROOT"].'/'.'sqsg6/Training_site/features/features_loader.php';
+$features_loader_path = "/var/www/html/sqsg6/Training_site/features/features_loader.php";
 require_once($features_loader_path);
 
 ?>
