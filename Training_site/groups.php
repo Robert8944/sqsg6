@@ -1,7 +1,8 @@
 <?php include 'config/header.php';
 require_once('../sql_connector.php');
-$features_loader_path =  $_SERVER["DOCUMENT_ROOT"].'/'.'Training_site/features/features_loader.php';
-require_once($features_loader_path);
+require_once("../feature_connector.php");
+//$features_loader_path =  $_SERVER["DOCUMENT_ROOT"].'/'.'Training_site/features/features_loader.php';
+//require_once($features_loader_path);
 ?>
 
 <?php
