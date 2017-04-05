@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("../../sql_connector.php");
 if(isset($_POST['submit'])) {
 	
@@ -14,6 +15,9 @@ if(isset($_POST['submit'])) {
 	$numberPart1 = "123";
 	$numberPart2 = "45687";
 	
+	$smsReport = "";
+	$subscriptionReport = "";
+
 	$CountryCode = $mysqli->real_escape_string(trim($countryCode));
 	$Carrier = $mysqli->real_escape_string(trim($carrier));
 	
@@ -81,23 +85,33 @@ if(isset($_POST['submit'])) {
 			$stmt->execute();
 			$stmt->close();
 			if ($recieved == true) {
-				echo '<h3 style = "text-align: center">Message sent!</h3>';
+				//echo '<h3 style = "text-align: center">Message sent!</h3>';
+				$smsReport = '<h3 style = "text-align: center">Message sent!</h3>';
 			}
 			else{
-				echo '<h3 style = "text-align: center">Message not sent.</h3>';
+				//echo '<h3 style = "text-align: center">Message not sent.</h3>';
+				$smsReport = '<h3 style = "text-align: center">Message not sent.</h3>';
 			}
 		}
 		else {
-			echo '<h2 style = "text-align: center">Number is already subscribed to our service. Thanks for your eagerness to stay updated! <h2>';
+			//echo '<h2 style = "text-align: center">Number is already subscribed to our service. Thanks for your eagerness to stay updated! <h2>';
+			$subscriptionReport = '<h2 style = "text-align: center">Number is already subscribed to our service. Thanks for your eagerness to stay updated! </h2>';
 		}
     }
     else {
-        echo '<h2 style = "text-align: center">Phone number entered was invalid. Please enter numbers only!<h2>';
-    }
+        //echo '<h2 style = "text-align: center">Phone number entered was invalid. Please enter numbers only!<h2>';
+   	$subscriptionReport =  '<h2 style = "text-align: center">Phone number entered was invalid. Please enter numbers only!</h2>';
+
+	 }
 //*/
 }
 
-echo "Form page 7.";
+//echo "Form page 9.";
+//echo $smsReport;
+//echo $subscriptionReport;
+$_SESSION['SMSReport'] = $smsReport;
+$_SESSION['SubscriptionReport'] = $subscriptionReport;
+echo '<meta http-equiv="refresh" content="0; ../index.php" />';
 ?>
 
 

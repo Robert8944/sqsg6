@@ -1,6 +1,20 @@
 <?php include 'config/header.php';
 require_once('../sql_connector.php');?>
 
+<?php
+if(isset($_SESSION['SMSReport']))
+{
+	echo $_SESSION['SMSReport'];
+	unset($_SESSION['SMSReport']);
+}
+if(isset($_SESSION['SubscriptionReport']))
+{
+	echo $_SESSION['SubscriptionReport'];
+	unset($_SESSION['SubscriptionReport']);
+}
+
+?>
+
 <html>
 <!DOCTYPE html>
 <div id="home_page">
