@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once("../../feature_connector.php");
 require_once("../../sql_connector.php");
 if(isset($_POST['submit'])) {
 	
@@ -109,9 +110,13 @@ if(isset($_POST['submit'])) {
 //echo "Form page 9.";
 //echo $smsReport;
 //echo $subscriptionReport;
+
 $_SESSION['SMSReport'] = $smsReport;
 $_SESSION['SubscriptionReport'] = $subscriptionReport;
-echo '<meta http-equiv="refresh" content="0; ../index.php" />';
+//echo '<meta http-equiv="refresh" content="0; ../index.php" />';
+
+feature_loader("phonesub", $_SESSION["user"]);
+
 ?>
 
 
