@@ -1,30 +1,38 @@
 <?php
+require_once("../../sql_connector.php");
 if(isset($_POST['submit'])) {
 	
 	//define function to retrieve JSON string from numverify.com
 	//credit for this function is given to http://stackoverflow.com/questions/6516902/how-to-get-response-using-curl-in-php	
-    $NumberInputError = False;
+    	$NumberInputError = False;
 	$PhoneNumber = "";
 	$NumberInDatabase = False;
-/*	$CountryCode = $mysqli->real_escape_string(trim($_POST['countrycode']));
-	$Carrier = $mysqli->real_escape_string(trim($_POST['carrier']));
+	
+	$countryCode = "1";
+	$carrier = "VERIZON";
+	$areaCode = "859";
+	$numberPart1 = "123";
+	$numberPart2 = "45687";
+	
+	$CountryCode = $mysqli->real_escape_string(trim($countryCode));
+	$Carrier = $mysqli->real_escape_string(trim($carrier));
 	
 	//build the phone number string from the fields the user filled out
 	//raise an error flag if anything they type is invalid (not a number)
-    if (preg_match('%[0-9]%', stripslashes(trim($_POST['areacode'])))) {
-        $PhoneNumber .= $mysqli->real_escape_string(trim($_POST['areacode']));
+    if (preg_match('%[0-9]%', stripslashes(trim($areaCode)))) {
+        $PhoneNumber .= $mysqli->real_escape_string(trim($areaCode));
     }
     else {
         $NumberInputError = True;
     }
-	if (preg_match('%[0-9]%', stripslashes(trim($_POST['numberpart1'])))) {
-        $PhoneNumber .= $mysqli->real_escape_string(trim($_POST['numberpart1']));
+	if (preg_match('%[0-9]%', stripslashes(trim($numberPart1)))) {
+        $PhoneNumber .= $mysqli->real_escape_string(trim($numberPart1));
     }
     else {
         $NumberInputError = True;
     }
-	if (preg_match('%[0-9]%', stripslashes(trim($_POST['numberpart2'])))) {
-        $PhoneNumber .= $mysqli->real_escape_string(trim($_POST['numberpart2']));
+	if (preg_match('%[0-9]%', stripslashes(trim($numberPart2)))) {
+        $PhoneNumber .= $mysqli->real_escape_string(trim($numberPart2));
     }
     else {
         $NumberInputError = True;
@@ -86,10 +94,10 @@ if(isset($_POST['submit'])) {
     else {
         echo '<h2 style = "text-align: center">Phone number entered was invalid. Please enter numbers only!<h2>';
     }
-*/
+//*/
 }
 
-echo "Form page 2.";
+echo "Form page 7.";
 ?>
 
 
