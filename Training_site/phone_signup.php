@@ -1,7 +1,7 @@
 		<?php 
 		echo <<<END
 		<h3>Sign up for text alerts to stay updated:</h3>
-		<form  class= "form-horizontal" action="" method="post">
+		<form  class= "form-horizontal" action="user_operations/add_phone.php" method="post">
 			<div class="form-group">
 				<label class="control-label col-sm-6">Country</label>
 				<div class="col-sm-6" style="width: initial">
