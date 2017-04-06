@@ -29,6 +29,7 @@ if(isset($_POST['submit'])) {
 	$numberPart2 = $_POST["numberpart2"]; //corresponds to an <input> tag
 	
 
+	$UID = $_SESSION["user"];
 	$CountryCode = $mysqli->real_escape_string(trim($countryCode));
 	$Carrier = $mysqli->real_escape_string(trim($carrier));
 	
@@ -90,11 +91,23 @@ if(isset($_POST['submit'])) {
 			$headers = "From: SQS Training\r\n";
 			$recieved = mail($text_email,'SQS Subscription Confirmation',$message,$headers);
 
-			//then, add the number and carrier to the database
+			//then, add the number and carrier to the "subscriber" table
+			
 			$stmt = $mysqli->prepare('INSERT INTO subscriber (phone_number, carrier, international_code) VALUES (?,?,?)');
 			$stmt->bind_param("sss", $PhoneNumber,$Carrier,$CountryCode);
 			$stmt->execute();
 			$stmt->close();
+			
+			//Add the phone data to the "phone_list" table
+			//$CountryCode = "+".$CountryCode;
+			$temp = "+".$CountryCode;
+			$CountryCode = $temp;
+			$stmt = $mysqli->prepare('INSERT INTO phone_list (phone_number, user_id, carrier, international_code) VALUES (?,?,?,?)');
+			$stmt->bind_param("ssss", $PhoneNumber, $UID, $Carrier,$CountryCode);
+			$stmt->execute();
+			$stmt->close();
+
+
 			if ($recieved == true) {
 				//echo '<h3 style = "text-align: center">Message sent!</h3>';
 				$smsReport = '<h3 style = "text-align: center">Message sent!</h3>';
