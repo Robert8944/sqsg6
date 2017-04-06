@@ -1,6 +1,8 @@
 
 <?php include 'config/header.php';
-require_once('../sql_connector.php');?>
+require_once('../sql_connector.php');
+require_once('../feature_connector.php');
+?>
 
 <?php
 if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
@@ -97,8 +99,9 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			
 			
 			//Retrieve phone information
-			$phone_numbers = [];
-			$group_ids = [];
+		//	feature_loader("phonedisplay", $_SESSION["user"]);
+/*			$phone_numbers = [];
+
 			$number_of_phones = 0;
 		
 			$sql1 = "SELECT * FROM phone_list WHERE user_id=".$UID.";";
@@ -114,7 +117,7 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				}
 		
 			}
-	
+*/	
 
 
 			//Retrieve group information
@@ -165,6 +168,8 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			}
 			echo '</div></div>';
 			
+			feature_loader("phonedisplay", $_SESSION["user"]);
+/*
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Phone numbers on file</label>';
 			echo '<div class="col-sm-5">';
@@ -192,7 +197,7 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			
 			}
 			echo '</div></div>';
-		
+*/		
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Groups you belong to</label>';
 
