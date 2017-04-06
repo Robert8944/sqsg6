@@ -33,7 +33,8 @@
             </button>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav"> 
+		<li><a href="./">Home </a></li>
               <?php
                 if(isset($_SESSION['priv'])){
                     echo '<li> <a href = "profile.php">  View Profile </a></li> ';

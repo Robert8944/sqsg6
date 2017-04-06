@@ -93,35 +93,35 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			$stmt->bind_result($rank);
 			$stmt->fetch();
 			$stmt->close();
-		//	echo "level: ".$level."<br />";
-		//	echo "rank: ".$rank."<br />";
-
-			//Retrieves phone data from phone_list table
 			
-			$phone_number = "N/A";
-/*			$query = "select phone_number from phone_list where user_id = ?";
-			$stmt = $mysqli->prepare($query);
-			$stmt->bind_param("s",$UID);
-			$stmt->execute();
-			$stmt->bind_result($phone_number);
-			$stmt->fetch();
-			$stmt->close();
-			//echo "Phone number: ".$phone_number."<br />";
-*/		
-
-//		echo "level: ".$level."<br />";
+			
+			
+			//Retrieve phone information
+			$phone_numbers = [];
+			$group_ids = [];
+			$number_of_phones = 0;
+		
+			$sql1 = "SELECT * FROM phone_list WHERE user_id=".$UID.";";
 	
+			$result1 = $mysqli->query($sql1);
+			if($result1->num_rows > 0)
+			{
+				$number_of_phones = $result1->num_rows;
+				while($row = $result1->fetch_assoc())
+				{	
+					array_push($phone_numbers, $row["phone_number"]);
+				
+				}
+		
+			}
+	
+
+
+			//Retrieve group information
 			$group_names = [];
 			$group_ids = [];
 			$number_of_groups = 0;
-			//$sql1 = "SELECT * FROM group_members WHERE uid = ".$UID.";";
-		//	$sql1 = "SELECT * FROM group_members INNER JOIN user ON uid WHERE uid = ".$UID.";";
-
-			//$sql1 = "SELECT * FROM group_members INNER JOIN user on group_members.uid=user.uid WHERE user.uid=".$UID.";";	
-			$sql1 = "SELECT * FROM group_members INNER JOIN groups ON group_members.group_id=groups.id WHERE group_members.uid=8;";
-			//echo "Sql: ".$sql1."<br />";
-			//echo "Sql: ".$sql1."<br />";
-
+			$sql1 = "SELECT * FROM group_members INNER JOIN groups ON group_members.group_id=groups.id WHERE group_members.uid=".$UID.";";
 			$result1 = $mysqli->query($sql1);
 			if($result1->num_rows > 0)
 			{
@@ -129,14 +129,8 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				while($row = $result1->fetch_assoc())
 				{	
 					array_push($group_names, $row["name"]);
-				//	array_push($group_ids, $row["id"]);
 				}
-			//	echo "rows: ".$result1->num_rows;
 			}
-			//echo "rows: ".$result1->num_rows;	
-			//echo "Test <br />";
-			
-			//$rank = $level;
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Name</label>';
 			echo '<div class="col-sm-5">';
@@ -172,14 +166,30 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			echo '</div></div>';
 			
 			echo '<div id="inputbox" class="form-group">';
-			echo '<label class="control-label col-sm-5" >Contact info</label>';
+			echo '<label class="control-label col-sm-5" >Phone numbers on file</label>';
 			echo '<div class="col-sm-5">';
 			if(isset($_POST['edit'])) {
 			//	echo '<input type="email" name="email" size="30" value="'.$email.'" />';
-				echo $phone_number;			
+				if($number_of_phones == 0)
+				{
+					echo "No registered phones";
+				}
+				foreach($phone_numbers as $key => $val)
+				{
+					echo $val."<br />";
+				}			
+					
 			}
 			else {
-				echo $phone_number;
+				if($number_of_phones == 0)
+				{
+					echo "No registered phones";
+				}
+				foreach($phone_numbers as $key => $val)
+				{
+					echo $val."<br />";
+				}			
+			
 			}
 			echo '</div></div>';
 		
