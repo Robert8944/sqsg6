@@ -115,8 +115,10 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			$group_ids = [];
 			$number_of_groups = 0;
 			//$sql1 = "SELECT * FROM group_members WHERE uid = ".$UID.";";
-			$sql1 = "SELECT * FROM group_members INNER JOIN user ON uid WHERE uid = ".$UID.";";
+		//	$sql1 = "SELECT * FROM group_members INNER JOIN user ON uid WHERE uid = ".$UID.";";
 
+			//$sql1 = "SELECT * FROM group_members INNER JOIN user on group_members.uid=user.uid WHERE user.uid=".$UID.";";	
+			$sql1 = "SELECT * FROM group_members INNER JOIN groups ON group_members.group_id=groups.id WHERE group_members.uid=8;";
 			//echo "Sql: ".$sql1."<br />";
 			//echo "Sql: ".$sql1."<br />";
 
@@ -126,11 +128,12 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				$number_of_groups = $result1->num_rows;
 				while($row = $result1->fetch_assoc())
 				{	
-					array_push($group_names, $row["id"]);
-					array_push($group_ids, $row["id"]);
+					array_push($group_names, $row["name"]);
+				//	array_push($group_ids, $row["id"]);
 				}
-			//	echo "groups: ".$result1->num_rows;
-			}	
+			//	echo "rows: ".$result1->num_rows;
+			}
+			//echo "rows: ".$result1->num_rows;	
 			//echo "Test <br />";
 			
 			//$rank = $level;
