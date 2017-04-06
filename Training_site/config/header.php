@@ -37,6 +37,8 @@
               <?php
                 if(isset($_SESSION['priv'])){
                     echo '<li> <a href = "profile.php">  View Profile </a></li> ';
+		     echo '<li> <a href = "groups.php">  Groups </a></li> ';
+
                     if($_SESSION['priv'] == '1'){
                         echo '<li> <a href ="admin_user_info.php">  Admin Page </a></li>';
                     }

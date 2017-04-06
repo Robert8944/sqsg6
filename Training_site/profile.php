@@ -75,7 +75,7 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 <div class="container">
 	<form  class= "form-horizontal"action="" method="post">
 		<?php
-			//displays info
+			//Retrieves info from user table
 			$UID = $_SESSION['user'];
 			$query = "select Name, Email, level from user where UID = ?";
 			$stmt = $mysqli->prepare($query);
@@ -85,15 +85,50 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			$stmt->fetch();
 			$stmt->close();			
 
-
+			//Retrieves level information from level table
 			$query = "select title from levels where id = ?";
 			$stmt = $mysqli->prepare($query);
 			$stmt->bind_param("s",$level);
 			$stmt->execute();
 			$stmt->bind_result($rank);
 			$stmt->fetch();
-	
+			$stmt->close();
+		//	echo "level: ".$level."<br />";
+		//	echo "rank: ".$rank."<br />";
 
+			//Retrieves phone data from phone_list table
+			
+			$phone_number = "N/A";
+			$query = "select phone_number from phone_list where user_id = ?";
+			$stmt = $mysqli->prepare($query);
+			$stmt->bind_param("s",$UID);
+			$stmt->execute();
+			$stmt->bind_result($phone_number);
+			$stmt->fetch();
+			$stmt->close();
+			//echo "Phone number: ".$phone_number."<br />";
+		
+
+//		echo "level: ".$level."<br />";
+	/*
+			$group_names = [];
+			$group_ids = [];
+			$sql1 = "SELECT * FROM groups;";
+			echo "Sql: ".$sql1."<br />";
+			//echo "Sql: ".$sql1."<br />";
+
+			$result1 = $mysqli->query($sql1);
+			if($result1->num_rows > 0)
+			{
+				while($row = $result1->fetch_assoc())
+				{	
+					array_push($group_names, $row["name"]);
+					array_push($group_ids, $row["id"]);
+				}
+				echo "groups: ".$result1->num_rows;
+			}	
+			echo "Test <br />";
+			*/
 			//$rank = $level;
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Name</label>';
@@ -128,7 +163,20 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				echo $rank;
 			}
 			echo '</div></div>';
+			
+			echo '<div id="inputbox" class="form-group">';
+			echo '<label class="control-label col-sm-5" >Contact info</label>';
+			echo '<div class="col-sm-5">';
+			if(isset($_POST['edit'])) {
+			//	echo '<input type="email" name="email" size="30" value="'.$email.'" />';
+				echo $phone_number;			
+			}
+			else {
+				echo $phone_number;
+			}
+			echo '</div></div>';
 	
+
 			$stmt->close();
 		?>
 
