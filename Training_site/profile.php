@@ -99,7 +99,7 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			//Retrieves phone data from phone_list table
 			
 			$phone_number = "N/A";
-			$query = "select phone_number from phone_list where user_id = ?";
+/*			$query = "select phone_number from phone_list where user_id = ?";
 			$stmt = $mysqli->prepare($query);
 			$stmt->bind_param("s",$UID);
 			$stmt->execute();
@@ -107,28 +107,32 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			$stmt->fetch();
 			$stmt->close();
 			//echo "Phone number: ".$phone_number."<br />";
-		
+*/		
 
 //		echo "level: ".$level."<br />";
-	/*
+	
 			$group_names = [];
 			$group_ids = [];
-			$sql1 = "SELECT * FROM groups;";
-			echo "Sql: ".$sql1."<br />";
+			$number_of_groups = 0;
+			//$sql1 = "SELECT * FROM group_members WHERE uid = ".$UID.";";
+			$sql1 = "SELECT * FROM group_members INNER JOIN user ON uid WHERE uid = ".$UID.";";
+
+			//echo "Sql: ".$sql1."<br />";
 			//echo "Sql: ".$sql1."<br />";
 
 			$result1 = $mysqli->query($sql1);
 			if($result1->num_rows > 0)
 			{
+				$number_of_groups = $result1->num_rows;
 				while($row = $result1->fetch_assoc())
 				{	
-					array_push($group_names, $row["name"]);
+					array_push($group_names, $row["id"]);
 					array_push($group_ids, $row["id"]);
 				}
-				echo "groups: ".$result1->num_rows;
+			//	echo "groups: ".$result1->num_rows;
 			}	
-			echo "Test <br />";
-			*/
+			//echo "Test <br />";
+			
 			//$rank = $level;
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Name</label>';
@@ -175,7 +179,40 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				echo $phone_number;
 			}
 			echo '</div></div>';
+		
+			echo '<div id="inputbox" class="form-group">';
+			echo '<label class="control-label col-sm-5" >Groups you belong to</label>';
+
+			echo '<div class="col-sm-5">';
+			if(isset($_POST['edit'])) 
+			{
+	//			echo "Groups you belong to";
+				if($number_of_groups == 0)
+				{
+					echo "None";
+				}
+				foreach($group_names as $key => $val)
+				{
+					echo $val."<br />";
+				}			
+			
+			}
+			else {
+	//			echo "Groups you belong to";
+				if($number_of_groups == 0)
+				{
+					echo "None";
+				}
+
+				foreach($group_names as $key => $val)
+				{
+					echo $val."<br />";
+				}	
+			
+			}
+			echo '</div></div>';
 	
+
 
 			$stmt->close();
 		?>
