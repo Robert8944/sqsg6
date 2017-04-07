@@ -159,7 +159,7 @@ echo "</table>";
 //Add/remove group leaders
 		echo "<tr>";
 		echo "<td>";
-		
+///*		
 		echo "<form action=\"group_operations/promote_to_leader.php\" method=\"post\">";
 		echo "User email: <input type=\"text\" name=\"username\" id=\"username\">";
 		
@@ -167,7 +167,7 @@ echo "</table>";
 		
 		echo "<button class = \"btn btn-primary\" type=\"submit\" value=\"Add\"> Add </button>";
 		echo "</form>";
-		
+//*/		
 		echo "</td>";
 		echo "</tr>";
 

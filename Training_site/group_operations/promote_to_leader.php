@@ -41,14 +41,14 @@ if($result3->num_rows > 0)
 if($belongsToGroup == False)
 {
 $sql4 = "INSERT INTO group_members (group_id, leader, uid) VALUES(".$group_id.",1, ".$uid.");";
-echo "sql4: ".$sql4."<br />";
+//echo "sql4: ".$sql4."<br />";
 $result4 = $mysqli->query($sql4);
 }
 else
 {
 //Otherwise, simply promote the user
 $sql4 = "UPDATE group_members SET leader=1 WHERE group_id=".$group_id." AND uid=".$uid.";";
-echo "sql4: ".$sql4."<br />";
+//echo "sql4: ".$sql4."<br />";
 $result4 = $mysqli->query($sql4);
 }
 //echo "group_name: ".$group_name."<br />";

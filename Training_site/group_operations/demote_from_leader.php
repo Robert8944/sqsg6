@@ -29,13 +29,35 @@ if($result2->num_rows > 0)
 		$group_id = $row["id"];
 	}
 }
-$sql3 = "DELETE FROM group_members WHERE group_id=".$group_id." AND uid=".$uid.";";
+//Check if the account belongs to the group
+$sql3 = "SELECT * FROM group_members WHERE group_id=".$group_id." AND uid=".$uid.";";
 $result3 = $mysqli->query($sql3);
-
+//If the account does not belong to the group, add the user before promoting
+$belongsToGroup = False;
+if($result3->num_rows > 0)
+{
+	$belongsToGroup = True;
+}
+if($belongsToGroup == False)
+{
+//If the user is not part of the group, no need to demote. Do nothing
+/*
+$sql4 = "INSERT INTO group_members (group_id, leader, uid) VALUES(".$group_id.",1, ".$uid.");";
+echo "sql4: ".$sql4."<br />";
+$result4 = $mysqli->query($sql4);
+*/
+}
+else
+{
+//Otherwise, simply promote the user
+$sql4 = "UPDATE group_members SET leader=0 WHERE group_id=".$group_id." AND uid=".$uid.";";
+//echo "sql4: ".$sql4."<br />";
+$result4 = $mysqli->query($sql4);
+}
 //echo "group_name: ".$group_name."<br />";
 //echo "username: ".$username."<br />";
 //echo "group_id: ".$group_id."<br />";
 //echo "uid: ".$uid."<br />";
-
+//echo "Called";
 echo "<meta http-equiv=\"refresh\" content=\"0; url=../admin_user_info.php\">";
 ?>
