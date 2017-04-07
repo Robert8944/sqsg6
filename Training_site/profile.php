@@ -99,6 +99,7 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			
 			
 			//Retrieve group information
+	/*
 			$group_names = [];
 			$group_ids = [];
 			$number_of_groups = 0;
@@ -112,6 +113,8 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 					array_push($group_names, $row["name"]);
 				}
 			}
+	*/
+			//Display name
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Name</label>';
 			echo '<div class="col-sm-5">';
@@ -148,6 +151,24 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			echo '</div></div>';
 			
 	//Load group information
+	
+		feature_loader("groupdisplay", $_SESSION["user"]);
+
+	/*
+			$group_names = [];
+			$group_ids = [];
+			$number_of_groups = 0;
+			$sql1 = "SELECT * FROM group_members INNER JOIN groups ON group_members.group_id=groups.id WHERE group_members.uid=".$UID.";";
+			$result1 = $mysqli->query($sql1);
+			if($result1->num_rows > 0)
+			{
+				$number_of_groups = $result1->num_rows;
+				while($row = $result1->fetch_assoc())
+				{	
+					array_push($group_names, $row["name"]);
+				}
+			}
+		
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Groups you belong to</label>';
 
@@ -179,8 +200,8 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			
 			}
 			echo '</div></div>';
-			$stmt->close();
-	
+		//	$stmt->close(); //What is this closing?
+	*/
 
 	//Load phone information		
 			feature_loader("phonedisplay", $_SESSION["user"]);
