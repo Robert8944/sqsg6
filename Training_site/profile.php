@@ -76,9 +76,10 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 <html>		
 <div class="container">
 	<form  class= "form-horizontal"action="" method="post">
-		<?php
-			//Retrieves info from user table
+		<?php	
 			$UID = $_SESSION['user'];
+			//Retrieves info from user table
+			
 			$query = "select Name, Email, level from user where UID = ?";
 			$stmt = $mysqli->prepare($query);
 			$stmt->bind_param("s",$UID);
@@ -86,6 +87,24 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			$stmt->bind_result($name, $email, $level);
 			$stmt->fetch();
 			$stmt->close();			
+	
+			//Retrieves address information from the mail_address table
+
+			$state = "N/A";
+			$city = "N/A";
+			$zip = "N/A";
+			$state = "N/A";
+			$street_num = "N/A";
+			$street = "N/A";
+	
+			$query = "select state, city, zip, street, street_num from mail_address where user_id = ?";
+			$stmt = $mysqli->prepare($query);
+			$stmt->bind_param("s",$UID);
+			$stmt->execute();
+			$stmt->bind_result($state, $city, $zip, $street, $street_num);
+			$stmt->fetch();
+			$stmt->close();			
+
 
 			//Retrieves level information from level table
 			$query = "select title from levels where id = ?";
@@ -97,29 +116,6 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			$stmt->close();
 			
 			
-			
-			//Retrieve phone information
-		//	feature_loader("phonedisplay", $_SESSION["user"]);
-/*			$phone_numbers = [];
-
-			$number_of_phones = 0;
-		
-			$sql1 = "SELECT * FROM phone_list WHERE user_id=".$UID.";";
-	
-			$result1 = $mysqli->query($sql1);
-			if($result1->num_rows > 0)
-			{
-				$number_of_phones = $result1->num_rows;
-				while($row = $result1->fetch_assoc())
-				{	
-					array_push($phone_numbers, $row["phone_number"]);
-				
-				}
-		
-			}
-*/	
-
-
 			//Retrieve group information
 			$group_names = [];
 			$group_ids = [];
@@ -155,7 +151,8 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				echo $email;
 			}
 			echo '</div></div>';
-			
+	
+	//Display Rank		
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Rank</label>';
 			echo '<div class="col-sm-5">';
@@ -168,36 +165,7 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			}
 			echo '</div></div>';
 			
-			feature_loader("phonedisplay", $_SESSION["user"]);
-/*
-			echo '<div id="inputbox" class="form-group">';
-			echo '<label class="control-label col-sm-5" >Phone numbers on file</label>';
-			echo '<div class="col-sm-5">';
-			if(isset($_POST['edit'])) {
-			//	echo '<input type="email" name="email" size="30" value="'.$email.'" />';
-				if($number_of_phones == 0)
-				{
-					echo "No registered phones";
-				}
-				foreach($phone_numbers as $key => $val)
-				{
-					echo $val."<br />";
-				}			
-					
-			}
-			else {
-				if($number_of_phones == 0)
-				{
-					echo "No registered phones";
-				}
-				foreach($phone_numbers as $key => $val)
-				{
-					echo $val."<br />";
-				}			
-			
-			}
-			echo '</div></div>';
-*/		
+	//Load group information
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Groups you belong to</label>';
 
@@ -229,11 +197,37 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			
 			}
 			echo '</div></div>';
+			$stmt->close();
 	
 
+	//Load phone information		
+			feature_loader("phonedisplay", $_SESSION["user"]);
 
-			$stmt->close();
-		?>
+	//Load address information
+			echo '<div id="inputbox" class="form-group">';
+			echo '<label class="control-label col-sm-5" >Mail address</label>';
+			echo '<div class="col-sm-5">';
+			if(isset($_POST['edit'])) {
+			//	echo '<input type="email" name="email" size="30" value="'.$email.'" />';
+				echo $city;
+				echo "<br />";
+				echo $state;			
+			}
+			else {
+				echo $street_num;
+				echo " ";
+				echo $street;
+				echo "<br />";
+				echo $city;
+				echo ", ";
+				echo $state;
+				echo " ";
+				echo $zip;
+			}
+			echo '</div></div>';
+	
+
+	?>
 
 			<div id="inputbox" class="form-group">
 				<div class="control-label col-sm-6" id="centertext">
