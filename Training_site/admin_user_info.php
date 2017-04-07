@@ -113,34 +113,79 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 }
 echo "</table>";
 	echo '<table class="table tabel-striped">';
+//Add/remove group members		
 		echo "<tr>";
 		echo "<td>";
-		//echo "<p>";
+		echo "<h3>Add/remove group members</h3>";
+		echo "</td>";
+		echo "</tr>";
+		echo "<tr>";
+		echo "<td>";
+		
 		echo "<form action=\"group_operations/add_to_group.php\" method=\"post\">";
 		echo "User email: <input type=\"text\" name=\"username\" id=\"username\">";
-		//echo "<br />";
+		
 		echo "Group to add to: <input type=\"text\" name=\"group_name\" id=\"group_name\">";
-		//echo "<br />";
+		
 		echo "<button class = \"btn btn-primary\" type=\"submit\" value=\"Add\"> Add </button>";
 		echo "</form>";
-		//echo "</p>";
+		
 		echo "</td>";
 		echo "</tr>";
 
 		echo "<tr>";
 		echo "<td>";
-		//echo "<p>";
+	//	/*
 		echo "<form action=\"group_operations/remove_from_group.php\" method=\"post\">";
-		echo "User: <input type=\"text\" name=\"username\" id=\"username\">";
-		//echo "<br />";
+		echo "User email: <input type=\"text\" name=\"username\" id=\"username\">";
+		
 		echo "Group to remove from: <input type=\"text\" name=\"group_name\" id=\"group_name\">";
-		//echo "<br />";
+		
 		echo "<button class = \"btn btn-primary\" type=\"submit\" value=\"Remove\"> Remove </button>";
-		//echo "<input type=\"submit\" value=\"Remove\">";
 		echo "</form>";
-		//echo "</p>";
+	//*/
 		echo "</td>";
 		echo "</tr>";
+		echo "<tr>";
+		echo "<td>";
+		echo "<h3>Add/remove group leaders</h3>";
+		echo "</td>";
+		echo "</tr>";
+		echo "<tr>";
+		echo "<td>";
+		echo "<h4>If necessary, this will add a user to a group</h4>";
+		echo "</td>";
+		echo "</tr>";
+//Add/remove group leaders
+		echo "<tr>";
+		echo "<td>";
+///*		
+		echo "<form action=\"group_operations/promote_to_leader.php\" method=\"post\">";
+		echo "User email: <input type=\"text\" name=\"username\" id=\"username\">";
+		
+		echo "Group to promote in: <input type=\"text\" name=\"group_name\" id=\"group_name\">";
+		
+		echo "<button class = \"btn btn-primary\" type=\"submit\" value=\"Add\"> Add </button>";
+		echo "</form>";
+//*/		
+		echo "</td>";
+		echo "</tr>";
+
+		echo "<tr>";
+		echo "<td>";
+		echo "<form action=\"group_operations/demote_from_leader.php\" method=\"post\">";
+		echo "User email: <input type=\"text\" name=\"username\" id=\"username\">";
+		
+		echo "Group to demote from: <input type=\"text\" name=\"group_name\" id=\"group_name\">";
+		
+		echo "<button class = \"btn btn-primary\" type=\"submit\" value=\"Remove\"> Remove </button>";
+		echo "</form>";
+		echo "</td>";
+		echo "</tr>";
+		echo "<tr>";
+		echo "<td>";
+		//echo "</form>";
+
 	echo '</table>';
 
 	//close database

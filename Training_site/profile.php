@@ -1,6 +1,8 @@
 
 <?php include 'config/header.php';
-require_once('../sql_connector.php');?>
+require_once('../sql_connector.php');
+require_once('../feature_connector.php');
+?>
 
 <?php
 if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
@@ -74,9 +76,10 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 <html>		
 <div class="container">
 	<form  class= "form-horizontal"action="" method="post">
-		<?php
-			//displays info
+		<?php	
 			$UID = $_SESSION['user'];
+			//Retrieves info from user table
+/*			
 			$query = "select Name, Email, level from user where UID = ?";
 			$stmt = $mysqli->prepare($query);
 			$stmt->bind_param("s",$UID);
@@ -84,17 +87,29 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			$stmt->bind_result($name, $email, $level);
 			$stmt->fetch();
 			$stmt->close();			
+*/	
 
-
+			//Retrieves level information from level table
+/*		
 			$query = "select title from levels where id = ?";
 			$stmt = $mysqli->prepare($query);
 			$stmt->bind_param("s",$level);
 			$stmt->execute();
 			$stmt->bind_result($rank);
 			$stmt->fetch();
-	
-
-			//$rank = $level;
+			$stmt->close();
+*/			
+			
+			//Display name
+		///*
+			$query = "select Name, Email, level from user where UID = ?";
+			$stmt = $mysqli->prepare($query);
+			$stmt->bind_param("s",$UID);
+			$stmt->execute();
+			$stmt->bind_result($name, $email, $level);
+			$stmt->fetch();
+			$stmt->close();	
+		//*/
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Name</label>';
 			echo '<div class="col-sm-5">';
@@ -105,7 +120,7 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				echo $name;
 			}
 			echo '</div></div>';
-			
+	//Display Email		
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Email</label>';
 			echo '<div class="col-sm-5">';
@@ -116,7 +131,16 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				echo $email;
 			}
 			echo '</div></div>';
-			
+	
+	//Display Rank		
+			$query = "select title from levels where id = ?";
+			$stmt = $mysqli->prepare($query);
+			$stmt->bind_param("s",$level);
+			$stmt->execute();
+			$stmt->bind_result($rank);
+			$stmt->fetch();
+			$stmt->close();
+
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Rank</label>';
 			echo '<div class="col-sm-5">';
@@ -128,9 +152,17 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				echo $rank;
 			}
 			echo '</div></div>';
+			
+	//Load group information
 	
-			$stmt->close();
-		?>
+			feature_loader("groupdisplay", $_SESSION["user"]);
+
+	//Load phone information		
+			feature_loader("phonedisplay", $_SESSION["user"]);
+
+	//Load address information
+			feature_loader("addressdisplay", $_SESSION["user"]);
+	?>
 
 			<div id="inputbox" class="form-group">
 				<div class="control-label col-sm-6" id="centertext">

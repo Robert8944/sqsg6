@@ -116,8 +116,6 @@ if(isset($_POST['submit'])) {
 				//echo '<h3 style = "text-align: center">Message not sent.</h3>';
 				$smsReport = '<h3 style = "text-align: center">Message not sent.</h3>';
 			}
-			//The phone number was successfully added to phone_list
-			$subscriptionReport = '<h2 style = "text-align: center">Phone number added!</h2>';
 		}
 		else {
 			//echo '<h2 style = "text-align: center">Number is already subscribed to our service. Thanks for your eagerness to stay updated! <h2>';

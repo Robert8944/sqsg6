@@ -1,6 +1,8 @@
-<?php include 'config/header.php';
-require_once('../sql_connector.php');?>
 
+<?php include 'config/header.php';
+require_once('../sql_connector.php');
+
+?>
 <?php
 if(isset($_SESSION['SMSReport']))
 {
@@ -11,7 +13,9 @@ if(isset($_SESSION['SubscriptionReport']))
 {
 	echo $_SESSION['SubscriptionReport'];
 	unset($_SESSION['SubscriptionReport']);
+
 }
+
 
 ?>
 
@@ -20,7 +24,8 @@ if(isset($_SESSION['SubscriptionReport']))
 <div id="home_page">
   <body class="container">
     <div>
-		<?php
+	<?php
+
 			if (isset($_SESSION['user'])){	//prompts user with following messages if/if not logged in
 				echo '<h2>Hey there! Click the links on the header to navigate the site.</h2>';
 			}
@@ -28,9 +33,10 @@ if(isset($_SESSION['SubscriptionReport']))
 				echo '<h2>Welcome! Please login or sign up using the navigation bar at the top of the screen.</h2>';
 			}
 
-		?>
+	?>
 		<br/><br/>
 	<?php
+
 		if(isset($_SESSION['user']))
 		{
 			include("phone_signup.php");
@@ -51,7 +57,7 @@ if(isset($_SESSION['SubscriptionReport']))
   </body>
 <?php
 
-include "footer.php";
+include "footer.php"; 
 ?>
 </div>
 </html>
