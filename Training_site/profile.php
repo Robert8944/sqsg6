@@ -88,24 +88,6 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			$stmt->fetch();
 			$stmt->close();			
 	
-			//Retrieves address information from the mail_address table
-
-			$state = "N/A";
-			$city = "N/A";
-			$zip = "N/A";
-			$state = "N/A";
-			$street_num = "N/A";
-			$street = "N/A";
-	
-			$query = "select state, city, zip, street, street_num from mail_address where user_id = ?";
-			$stmt = $mysqli->prepare($query);
-			$stmt->bind_param("s",$UID);
-			$stmt->execute();
-			$stmt->bind_result($state, $city, $zip, $street, $street_num);
-			$stmt->fetch();
-			$stmt->close();			
-
-
 			//Retrieves level information from level table
 			$query = "select title from levels where id = ?";
 			$stmt = $mysqli->prepare($query);
@@ -204,29 +186,7 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			feature_loader("phonedisplay", $_SESSION["user"]);
 
 	//Load address information
-			echo '<div id="inputbox" class="form-group">';
-			echo '<label class="control-label col-sm-5" >Mail address</label>';
-			echo '<div class="col-sm-5">';
-			if(isset($_POST['edit'])) {
-			//	echo '<input type="email" name="email" size="30" value="'.$email.'" />';
-				echo $city;
-				echo "<br />";
-				echo $state;			
-			}
-			else {
-				echo $street_num;
-				echo " ";
-				echo $street;
-				echo "<br />";
-				echo $city;
-				echo ", ";
-				echo $state;
-				echo " ";
-				echo $zip;
-			}
-			echo '</div></div>';
-	
-
+			feature_loader("addressdisplay", $_SESSION["user"]);
 	?>
 
 			<div id="inputbox" class="form-group">
