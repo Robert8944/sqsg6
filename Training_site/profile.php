@@ -79,7 +79,7 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 		<?php	
 			$UID = $_SESSION['user'];
 			//Retrieves info from user table
-			
+/*			
 			$query = "select Name, Email, level from user where UID = ?";
 			$stmt = $mysqli->prepare($query);
 			$stmt->bind_param("s",$UID);
@@ -87,8 +87,10 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			$stmt->bind_result($name, $email, $level);
 			$stmt->fetch();
 			$stmt->close();			
-	
+*/	
+
 			//Retrieves level information from level table
+/*		
 			$query = "select title from levels where id = ?";
 			$stmt = $mysqli->prepare($query);
 			$stmt->bind_param("s",$level);
@@ -96,25 +98,18 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			$stmt->bind_result($rank);
 			$stmt->fetch();
 			$stmt->close();
+*/			
 			
-			
-			//Retrieve group information
-	/*
-			$group_names = [];
-			$group_ids = [];
-			$number_of_groups = 0;
-			$sql1 = "SELECT * FROM group_members INNER JOIN groups ON group_members.group_id=groups.id WHERE group_members.uid=".$UID.";";
-			$result1 = $mysqli->query($sql1);
-			if($result1->num_rows > 0)
-			{
-				$number_of_groups = $result1->num_rows;
-				while($row = $result1->fetch_assoc())
-				{	
-					array_push($group_names, $row["name"]);
-				}
-			}
-	*/
 			//Display name
+		///*
+			$query = "select Name, Email, level from user where UID = ?";
+			$stmt = $mysqli->prepare($query);
+			$stmt->bind_param("s",$UID);
+			$stmt->execute();
+			$stmt->bind_result($name, $email, $level);
+			$stmt->fetch();
+			$stmt->close();	
+		//*/
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Name</label>';
 			echo '<div class="col-sm-5">';
@@ -125,7 +120,7 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				echo $name;
 			}
 			echo '</div></div>';
-			
+	//Display Email		
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Email</label>';
 			echo '<div class="col-sm-5">';
@@ -138,6 +133,14 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			echo '</div></div>';
 	
 	//Display Rank		
+			$query = "select title from levels where id = ?";
+			$stmt = $mysqli->prepare($query);
+			$stmt->bind_param("s",$level);
+			$stmt->execute();
+			$stmt->bind_result($rank);
+			$stmt->fetch();
+			$stmt->close();
+
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Rank</label>';
 			echo '<div class="col-sm-5">';
@@ -152,56 +155,7 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			
 	//Load group information
 	
-		feature_loader("groupdisplay", $_SESSION["user"]);
-
-	/*
-			$group_names = [];
-			$group_ids = [];
-			$number_of_groups = 0;
-			$sql1 = "SELECT * FROM group_members INNER JOIN groups ON group_members.group_id=groups.id WHERE group_members.uid=".$UID.";";
-			$result1 = $mysqli->query($sql1);
-			if($result1->num_rows > 0)
-			{
-				$number_of_groups = $result1->num_rows;
-				while($row = $result1->fetch_assoc())
-				{	
-					array_push($group_names, $row["name"]);
-				}
-			}
-		
-			echo '<div id="inputbox" class="form-group">';
-			echo '<label class="control-label col-sm-5" >Groups you belong to</label>';
-
-			echo '<div class="col-sm-5">';
-			if(isset($_POST['edit'])) 
-			{
-	//			echo "Groups you belong to";
-				if($number_of_groups == 0)
-				{
-					echo "None";
-				}
-				foreach($group_names as $key => $val)
-				{
-					echo $val."<br />";
-				}			
-			
-			}
-			else {
-	//			echo "Groups you belong to";
-				if($number_of_groups == 0)
-				{
-					echo "None";
-				}
-
-				foreach($group_names as $key => $val)
-				{
-					echo $val."<br />";
-				}	
-			
-			}
-			echo '</div></div>';
-		//	$stmt->close(); //What is this closing?
-	*/
+			feature_loader("groupdisplay", $_SESSION["user"]);
 
 	//Load phone information		
 			feature_loader("phonedisplay", $_SESSION["user"]);
