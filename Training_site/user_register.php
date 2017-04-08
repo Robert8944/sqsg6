@@ -63,13 +63,7 @@ if(isset($_POST['submit'])) {		//waits for buttons press
         $stmt->execute();
         $results = $stmt->fetch();
 
-	//Add the optional information, if available
-	//Add optional user information
-
-	//Add optional phone information
-
-	//Add optional address information
-
+	
 	//If the account was successfully created, log the user into the new account
         if ($mysqli->affected_rows == 1) {
             session_start();
@@ -83,7 +77,41 @@ if(isset($_POST['submit'])) {		//waits for buttons press
            // $_SESSION['priv'] = $priv;
             $_SESSION['user'] = $UID;
             $_SESSION['name'] = $name;
-            header('location:index.php');
+            $stmt->close();
+	
+	 //Add the optional information, if available
+	//Add optional user information
+	$sql = "UPDATE user SET gender=".$_POST['gender'].";";
+	$result = $mysqli->query($sql);
+
+	$dateofbirth = $_POST["yearofbirth"]."-".$_POST["monthofbirth"]."-".$_POST["dayofbirth"];
+	$sql = "UPDATE user SET dateofbirth=".$dateofbirth." WHERE uid=".$UID.";";
+	$result = $mysqli->query($sql);
+	//Add optional phone information
+	//$sql = "INSERT INTO phone_list(user_id, phone_number, carrier, international_code, primary_phone) VALUES(".$UID.", ".$_POST["phone_number"].");";
+	$sql = "INSERT INTO phone_list(user_id, phone_number, primary_phone) VALUES(".$UID.", ".$_POST["phone_number"].", 1)";
+	$result = $mysqli->query($sql);
+
+	//Add optional address information
+	$sql = "INSERT INTO mail_address(user_id) VALUES(".$UID.")";
+	$result = $mysqli->query($sql);
+
+	$sql = "UPDATE mail_address SET state=".$_POST["state"]." WHERE user_id=".$UID.";";
+	$result = $mysqli->query($sql);
+
+	$sql = "UPDATE mail_address SET city=".$_POST["city"]." WHERE user_id=".$UID.";";
+	$result = $mysqli->query($sql);
+
+	$sql = "UPDATE mail_address SET zip=".$_POST["zip"]." WHERE user_id=".$UID.";";
+	$result = $mysqli->query($sql);
+
+	$sql = "UPDATE mail_address SET street=".$_POST["street"]." WHERE user_id=".$UID.";";
+	$result = $mysqli->query($sql);
+
+	$sql = "UPDATE mail_address SET street_num=".$_POST["street_num"]." WHERE user_id=".$UID.";";
+	$result = $mysqli->query($sql);
+
+	    //header('location:index.php');
         }
         else {
             echo "Darn! that email is taken :( Try another!";
@@ -172,7 +200,7 @@ if(isset($_POST['submit'])) {		//waits for buttons press
   	<div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5">Primary phone</label>
                 <div class="col-sm-7">
-                <input type="text" name="phone" size="30" />
+                <input type="text" name="phone_number" size="30" />
                 </div>
             </div>
  	 <div class="form-group" id="centerbox">
