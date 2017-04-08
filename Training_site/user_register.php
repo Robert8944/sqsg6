@@ -45,14 +45,14 @@ if(isset($_POST['submit'])) {		//waits for buttons press
         $results = $stmt->fetch();
         if ($mysqli->affected_rows == 1) {
             session_start();
-            $stmt2 = $mysqli->prepare('SELECT UID,Name,is_admin FROM user WHERE email = ?');
+            $stmt2 = $mysqli->prepare('SELECT UID,Name FROM user WHERE email = ?');
             $stmt2->bind_param("s", $email);
 			$stmt->close();
             $stmt2->execute();
             $stmt2->bind_result($UID,$name,$priv);
 			$stmt2->fetch();
 			echo $stmt2->affected_rows;
-            $_SESSION['priv'] = $priv;
+           // $_SESSION['priv'] = $priv;
             $_SESSION['user'] = $UID;
             $_SESSION['name'] = $name;
             header('location:index.php');
