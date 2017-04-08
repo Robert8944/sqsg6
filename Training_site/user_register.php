@@ -15,11 +15,16 @@ if (isset($_SESSION['user'])){		//redirects if user not an actual user
 if(isset($_POST['submit'])) {		//waits for buttons press
     $EmailError = False;
     $passwordError = False;
+    $passwordsMatch = False;
     $NameError = False;
-
+	
 	//makes sure that pasword and email aren't sql queries
     if (preg_match('%[A-Za-z0-9\.\-\$\@\$\!\%\*\#\?\&]%', stripslashes(trim($_POST['password'])))) {
         $password = $mysqli->real_escape_string(trim($_POST['password']));
+	if($_POST['password'] == $_POST['confirmpassword'])
+	{
+		$passwordsMatch = True;
+	}
         $password  = hash("sha256", $password);
     }
     else {
@@ -32,20 +37,40 @@ if(isset($_POST['submit'])) {		//waits for buttons press
         $EmailError = True;
     }
 
-    if (preg_match('%^[a-zA-Z]+$%', stripslashes(trim($_POST['name'])))) {
+    if (preg_match('%^[a-zA-Z ]+$%', stripslashes(trim($_POST['name'])))) {
         $name = $mysqli->real_escape_string(trim($_POST['name']));
     }
     else {
         $NameError = True;
     }
+/*
+	echo "Password error: ".$passwordError."<br />";
+	echo "Email error: ".$PasswordError."<br />";
+	echo "Name error: ".$NameError."<br />";
+*/
 
 	//updates info
-    if ($passwordError == False and $EmailError == False and $NameError == False) {
+    if($passwordMatch == False)
+	{
+		echo "Error: You did not type the same password twice.";	
+	}
+    else if ($passwordError == False and $EmailError == False and $NameError == False) {
+
+	//Create a new user account with the mandatory information
         $query = "Insert INTO user (Name,Password,Email) VALUES (?,?,?)";
         $stmt = $mysqli->prepare($query);
         $stmt->bind_param("sss",$name,$password,$email);
         $stmt->execute();
         $results = $stmt->fetch();
+
+	//Add the optional information, if available
+	//Add optional user information
+
+	//Add optional phone information
+
+	//Add optional address information
+
+	//If the account was successfully created, log the user into the new account
         if ($mysqli->affected_rows == 1) {
             session_start();
             $stmt2 = $mysqli->prepare('SELECT UID,Name FROM user WHERE email = ?');
@@ -116,7 +141,7 @@ if(isset($_POST['submit'])) {		//waits for buttons press
                 <input type="password" name="confirmpassword" size="30" /></label>
                     </div>
             </div>
-<!-- -->
+<!-- 
 
 	  <div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5">Gender</label>
@@ -124,7 +149,18 @@ if(isset($_POST['submit'])) {		//waits for buttons press
                 <input type="text" name="gender" size="30" />
                 </div>
             </div>
- 	 <div class="form-group" id="centerbox">
+ 
+-->
+	  <div class="form-group" id="centerbox">
+                <label class="control-label col-sm-5">Gender</label>
+                <div class="col-sm-7">
+                <input type="radio" name="gender"/> Female <br />
+		<input type="radio" name="gender"/> Male <br />
+                </div>
+            </div>
+ 
+
+	 <div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5">Date of birth (MM/DD/YYYY)</label>
                 <div class="col-sm-7">
                 <input type="text" name="monthofbirth" size="6" /> /
