@@ -88,50 +88,55 @@ if(isset($_POST['submit'])) {		//waits for buttons press
             </div>
   
             <div class="form-group" id="centerbox">
-                <label class="control-label col-sm-5" >*Name</label>
+                <label class="control-label col-sm-5" >* Name</label>
                 <div class="col-sm-7">
                 <input type="text" name="name" size="30" /></label>
                     </div>
             </div>
 
+     <div class="form-group" id="centerbox">
+                <label class="control-label col-sm-5">* Email</label>
+                <div class="col-sm-7">
+                <input type="text" name="email" size="30" </label>
+                </div>
+            </div>
+	
+
 
             <div class="form-group" id="centerbox">
-                <label class="control-label col-sm-5" >*Password</label>
+                <label class="control-label col-sm-5" >* Password</label>
                 <div class="col-sm-7">
                 <input type="password" name="password" size="30" /></label>
                     </div>
             </div>
-<!--
+<!-- -->
             <div class="form-group" id="centerbox">
-                <label class="control-label col-sm-5" >Confirm password</label>
+                <label class="control-label col-sm-5" >* Confirm password</label>
                 <div class="col-sm-7">
                 <input type="password" name="confirmpassword" size="30" /></label>
                     </div>
             </div>
--->
-            <div class="form-group" id="centerbox">
-                <label class="control-label col-sm-5">*Email</label>
-                <div class="col-sm-7">
-                <input type="email" name="email" size="30" </label>
-                </div>
-            </div>
-	
+<!-- -->
+
 	  <div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5">Gender</label>
                 <div class="col-sm-7">
-                <input type="gender" name="gender" size="30" </label>
+                <input type="text" name="gender" size="30" />
                 </div>
             </div>
  	 <div class="form-group" id="centerbox">
-                <label class="control-label col-sm-5">Date of birth</label>
+                <label class="control-label col-sm-5">Date of birth (MM/DD/YYYY)</label>
                 <div class="col-sm-7">
-                <input type="dateofbirth" name="dateofbirth" size="30" </label>
-                </div>
+                <input type="text" name="monthofbirth" size="6" /> /
+                <input type="text" name="dayofbirth" size="6" /> /
+		<input type="text" name="yearofbirth" size="6" /> 
+		
+		</div>
             </div>
   	<div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5">Primary phone</label>
                 <div class="col-sm-7">
-                <input type="phone" name="phone" size="30" </label>
+                <input type="text" name="phone" size="30" />
                 </div>
             </div>
  	 <div class="form-group" id="centerbox">
@@ -143,32 +148,32 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	<div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5">Street name</label>
                 <div class="col-sm-7">
-                <input type="streetname" name="streetname" size="30" </label>
+                <input type="text" name="streetname" size="30" />
                 </div>
             </div>
 	<div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5">Street number</label>
                 <div class="col-sm-7">
-                <input type="streetnumber" name="streetnumber" size="30" </label>
+                <input type="text" name="streetnumber" size="30" />
                 </div>
             </div>
 	<div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5">City</label>
                 <div class="col-sm-7">
-                <input type="city" name="city" size="30" </label>
+                <input type="text" name="city" size="30" />
                 </div>
             </div>
 
 	<div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5">State</label>
                 <div class="col-sm-7">
-                <input type="state" name="state" size="30" </label>
+                <input type="text" name="state" size="30" />
                 </div>
             </div>
 	<div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5">Zip code</label>
                 <div class="col-sm-7">
-                <input type="zip" name="zip" size="30" </label>
+                <input type="text" name="zip" size="30" />
                 </div>
             </div>
 
