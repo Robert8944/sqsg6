@@ -20,11 +20,14 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	
 	//makes sure that pasword and email aren't sql queries
     if (preg_match('%[A-Za-z0-9\.\-\$\@\$\!\%\*\#\?\&]%', stripslashes(trim($_POST['password'])))) {
-        $password = $mysqli->real_escape_string(trim($_POST['password']));
-	if($_POST['password'] == $_POST['confirmpassword'])
+        if($_POST['password'] == $_POST['confirmpassword'])
 	{
 		$passwordsMatch = True;
 	}
+	echo "Password: ".$_POST["password"]."<br />";
+	echo "Confirm password: ".$_POST["confirmpassword"]."<br />";
+	echo "Passwords match: ".$passwordsMatch."<br />";
+	$password = $mysqli->real_escape_string(trim($_POST['password']));
         $password  = hash("sha256", $password);
     }
     else {
@@ -50,7 +53,7 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 */
 
 	//updates info
-    if($passwordMatch == False)
+    if($passwordsMatch == False)
 	{
 		echo "Error: You did not type the same password twice.";	
 	}
@@ -81,8 +84,9 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	
 	 //Add the optional information, if available
 	//Add optional user information
-	$sql = "UPDATE user SET gender=".$_POST['gender'].";";
+	$sql = "UPDATE user SET gender=\"".$_POST['gender']."\";";
 	$result = $mysqli->query($sql);
+	
 
 	$dateofbirth = $_POST["yearofbirth"]."-".$_POST["monthofbirth"]."-".$_POST["dayofbirth"];
 	$sql = "UPDATE user SET dateofbirth=".$dateofbirth." WHERE uid=".$UID.";";
@@ -95,17 +99,18 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	//Add optional address information
 	$sql = "INSERT INTO mail_address(user_id) VALUES(".$UID.")";
 	$result = $mysqli->query($sql);
+	//echo the above result to see why mail address info is not being added.
 
-	$sql = "UPDATE mail_address SET state=".$_POST["state"]." WHERE user_id=".$UID.";";
+	$sql = "UPDATE mail_address SET state=\"".$_POST["state"]."\" WHERE user_id=".$UID.";";
 	$result = $mysqli->query($sql);
 
-	$sql = "UPDATE mail_address SET city=".$_POST["city"]." WHERE user_id=".$UID.";";
+	$sql = "UPDATE mail_address SET city=\"".$_POST["city"]."\" WHERE user_id=".$UID.";";
 	$result = $mysqli->query($sql);
 
 	$sql = "UPDATE mail_address SET zip=".$_POST["zip"]." WHERE user_id=".$UID.";";
 	$result = $mysqli->query($sql);
 
-	$sql = "UPDATE mail_address SET street=".$_POST["street"]." WHERE user_id=".$UID.";";
+	$sql = "UPDATE mail_address SET street=\"".$_POST["street"]."\" WHERE user_id=".$UID.";";
 	$result = $mysqli->query($sql);
 
 	$sql = "UPDATE mail_address SET street_num=".$_POST["street_num"]." WHERE user_id=".$UID.";";
@@ -182,8 +187,8 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	  <div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5">Gender</label>
                 <div class="col-sm-7">
-                <input type="radio" name="gender"/> Female <br />
-		<input type="radio" name="gender"/> Male <br />
+                <input type="radio" name="gender" value="Female"/> Female <br />
+		<input type="radio" name="gender" value="Male"/> Male <br />
                 </div>
             </div>
  
@@ -229,7 +234,7 @@ if(isset($_POST['submit'])) {		//waits for buttons press
             </div>
 
 	<div class="form-group" id="centerbox">
-                <label class="control-label col-sm-5">State</label>
+                <label class="control-label col-sm-5">State (two letter abbreviation)</label>
                 <div class="col-sm-7">
                 <input type="text" name="state" size="30" />
                 </div>
@@ -244,7 +249,7 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 
             <div class="form-group" id="centerbox">
                 <div class="control-label col-sm-6">
-                <input class="btn btn-default" type="submit" name="submit" value="Register"/></label>
+                <input class="btn btn-default" type="submit" name="submit" value="Register"/>
                 </div>
             </div>
         </div>
