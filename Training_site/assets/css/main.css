@@ -3,13 +3,13 @@
 /*MOBILE CSS*/
 
 #heading nav{
-	background-color: #006a67;
+	background-color: #213741;
 	margin-bottom: 0px;
 	color: #ffffff;
 }
 
 #heading2 nav{
-	background-color: #006a67;
+	background-color: #213741;
 	margin-bottom: 0px;
 	color: #ffffff;
 }
@@ -91,7 +91,7 @@ form {
 	padding-top:20px;
 	padding-bottom:20px;
 	color: #fff;
-	background-color: #006a67;
+	background-color: #213741;
 }
 
 #inputbox {
@@ -160,7 +160,7 @@ form input {
 	border-bottom-style: solid;
 	border-bottom-color: #fff;
 	border-bottom-width: thin;
-	background-color: #006a67;
+	background-color: #213741;
 	color: #ffffff;
 	outline: none;
 }
@@ -169,7 +169,7 @@ form input {
 
 /*@media only screen and (min-width: 768px) {
 	#heading nav{
-		background-color: #006a67;
+		background-color: #213741;
 		margin-bottom: 0px;
 		color: #ffffff;
 	}
@@ -202,7 +202,7 @@ form input {
 }
 
 form{
-    background-color: #006a67;
+    background-color: #213741;
 }
 .form-group{
     padding-top:20px;
