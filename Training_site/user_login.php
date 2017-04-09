@@ -5,9 +5,11 @@ require_once('../sql_connector.php');?>
 
 
 <?php
+/*
 if (isset($_SESSION['user'])){      //redirects if user isn't a user
     header('location:index.php');
 }
+*/
 if(isset($_POST['submit'])) {          //waits for button press
     $EmailError = False;
     $passwordError = False;

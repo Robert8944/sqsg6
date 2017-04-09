@@ -5,11 +5,10 @@ require_once('../sql_connector.php');?>
 
 
 <?php
-/*
 if (isset($_SESSION['user'])){		//redirects if user not an actual user
     header('location:index.php');
 }
-*/
+
 
 //Start of code for user registration in SQL
 
@@ -25,9 +24,9 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	{
 		$passwordsMatch = True;
 	}
-//	echo "Password: ".$_POST["password"]."<br />";
-//	echo "Confirm password: ".$_POST["confirmpassword"]."<br />";
-//	echo "Passwords match: ".$passwordsMatch."<br />";
+	echo "Password: ".$_POST["password"]."<br />";
+	echo "Confirm password: ".$_POST["confirmpassword"]."<br />";
+	echo "Passwords match: ".$passwordsMatch."<br />";
 	$password = $mysqli->real_escape_string(trim($_POST['password']));
         $password  = hash("sha256", $password);
     }
@@ -69,88 +68,55 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 
 	
 	//If the account was successfully created, log the user into the new account
-        
-	if ($mysqli->affected_rows == 1) {
-
-	$sql = "SELECT * FROM user WHERE Email=\"".$email."\";";
-//	echo "SQL: ".$sql."<br />";
-	$result = $mysqli->query($sql);
-	$UID = -1;
-	if($result->num_rows > 0)
-	{
-		while($row = $result->fetch_assoc())
-		{
-			$UID = $row["UID"];	
-		}
-	}
-//	echo "UID: ".$UID."<br />";
-/*            session_start();
+        if ($mysqli->affected_rows == 1) {
+            session_start();
             $stmt2 = $mysqli->prepare('SELECT UID,Name FROM user WHERE email = ?');
             $stmt2->bind_param("s", $email);
 			$stmt->close();
             $stmt2->execute();
-            $stmt2->bind_result($UID,$name);
-	    $stmt2->fetch();
-	    echo "# Affected rows: ".$stmt2->affected_rows."<br />";
+            $stmt2->bind_result($UID,$name,$priv);
+			$stmt2->fetch();
+			echo $stmt2->affected_rows;
            // $_SESSION['priv'] = $priv;
             $_SESSION['user'] = $UID;
             $_SESSION['name'] = $name;
-        
-	    $stmt->close();
-*/	
+            $stmt->close();
+	
 	 //Add the optional information, if available
 	//Add optional user information
-		
-	//Gender
-	$sql = "UPDATE user SET gender=\"".$_POST['gender']."\" WHERE uid=".$UID.";";
-//	echo "SQL: ".$sql."<br />";
-	$result = $mysqli->query($sql);
-
-
-	//Date of birth
-	$dateofbirth = $_POST["yearofbirth"]."-".$_POST["monthofbirth"]."-".$_POST["dayofbirth"];
-	$sql = "UPDATE user SET dateofbirth='".$dateofbirth."' WHERE uid=".$UID.";";
-//	echo "SQL: ".$sql."<br />";
+	$sql = "UPDATE user SET gender=\"".$_POST['gender']."\";";
 	$result = $mysqli->query($sql);
 	
-	//Phone information
-	$sql = "INSERT INTO phone_list(user_id, phone_number, primary_phone) VALUES(".$UID.", ".$_POST["phone_number"].", 1)";
-//	echo "SQL: ".$sql."<br />";
 
+	$dateofbirth = $_POST["yearofbirth"]."-".$_POST["monthofbirth"]."-".$_POST["dayofbirth"];
+	$sql = "UPDATE user SET dateofbirth=".$dateofbirth." WHERE uid=".$UID.";";
 	$result = $mysqli->query($sql);
+	//Add optional phone information
+	//$sql = "INSERT INTO phone_list(user_id, phone_number, carrier, international_code, primary_phone) VALUES(".$UID.", ".$_POST["phone_number"].");";
+	$sql = "INSERT INTO phone_list(user_id, phone_number, primary_phone) VALUES(".$UID.", ".$_POST["phone_number"].", 1)";
+	$result = $mysqli->query($sql);
+
 	//Add optional address information
 	$sql = "INSERT INTO mail_address(user_id) VALUES(".$UID.")";
 	$result = $mysqli->query($sql);
+	//echo the above result to see why mail address info is not being added.
 
 	$sql = "UPDATE mail_address SET state=\"".$_POST["state"]."\" WHERE user_id=".$UID.";";
-//	echo "SQL: ".$sql."<br />";
-
 	$result = $mysqli->query($sql);
 
 	$sql = "UPDATE mail_address SET city=\"".$_POST["city"]."\" WHERE user_id=".$UID.";";
-	
 	$result = $mysqli->query($sql);
-//	echo "SQL: ".$sql."<br />";
 
 	$sql = "UPDATE mail_address SET zip=".$_POST["zip"]." WHERE user_id=".$UID.";";
-	
-	$result = $mysqli->query($sql);
-//	echo "SQL: ".$sql."<br />";
-
-	$sql = "UPDATE mail_address SET street=\"".$_POST["streetname"]."\" WHERE user_id=".$UID.";";
-//	echo "SQL: ".$sql."<br />";
-
 	$result = $mysqli->query($sql);
 
-	$sql = "UPDATE mail_address SET street_num=".$_POST["streetnumber"]." WHERE user_id=".$UID.";";
-//	echo "SQL: ".$sql."<br />";
-
+	$sql = "UPDATE mail_address SET street=\"".$_POST["street"]."\" WHERE user_id=".$UID.";";
 	$result = $mysqli->query($sql);
 
+	$sql = "UPDATE mail_address SET street_num=".$_POST["street_num"]." WHERE user_id=".$UID.";";
+	$result = $mysqli->query($sql);
 
-
-	echo "Account creation successful. Please log in.";
-	   // header('location:index.php');
+	    //header('location:index.php');
         }
         else {
             echo "Darn! that email is taken :( Try another!";

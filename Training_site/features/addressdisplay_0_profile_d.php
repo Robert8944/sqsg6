@@ -40,15 +40,22 @@ require_once('../../sql_connector.php');
 	
 			}
 			else {
-				echo $street_num;
-				echo " ";
-				echo $street;
-				echo "<br />";
-				echo $city;
-				echo ", ";
-				echo $state;
-				echo " ";
-				echo $zip;
+				if($street == "N/A")
+				{
+					echo "None on file";
+				}
+				else
+				{
+					echo $street_num;
+					echo " ";
+					echo $street;
+					echo "<br />";
+					echo $city;
+					echo ", ";
+					echo $state;
+					echo " ";
+					echo $zip;
+				}
 			}
 			echo '</div></div>';
 	
