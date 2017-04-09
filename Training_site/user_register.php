@@ -25,9 +25,9 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	{
 		$passwordsMatch = True;
 	}
-	echo "Password: ".$_POST["password"]."<br />";
-	echo "Confirm password: ".$_POST["confirmpassword"]."<br />";
-	echo "Passwords match: ".$passwordsMatch."<br />";
+//	echo "Password: ".$_POST["password"]."<br />";
+//	echo "Confirm password: ".$_POST["confirmpassword"]."<br />";
+//	echo "Passwords match: ".$passwordsMatch."<br />";
 	$password = $mysqli->real_escape_string(trim($_POST['password']));
         $password  = hash("sha256", $password);
     }
@@ -73,7 +73,7 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	if ($mysqli->affected_rows == 1) {
 
 	$sql = "SELECT * FROM user WHERE Email=\"".$email."\";";
-	echo "SQL: ".$sql."<br />";
+//	echo "SQL: ".$sql."<br />";
 	$result = $mysqli->query($sql);
 	$UID = -1;
 	if($result->num_rows > 0)
@@ -83,7 +83,7 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 			$UID = $row["UID"];	
 		}
 	}
-	echo "UID: ".$UID."<br />";
+//	echo "UID: ".$UID."<br />";
 /*            session_start();
             $stmt2 = $mysqli->prepare('SELECT UID,Name FROM user WHERE email = ?');
             $stmt2->bind_param("s", $email);
@@ -103,19 +103,19 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 		
 	//Gender
 	$sql = "UPDATE user SET gender=\"".$_POST['gender']."\" WHERE uid=".$UID.";";
-	echo "SQL: ".$sql."<br />";
+//	echo "SQL: ".$sql."<br />";
 	$result = $mysqli->query($sql);
 
 
 	//Date of birth
 	$dateofbirth = $_POST["yearofbirth"]."-".$_POST["monthofbirth"]."-".$_POST["dayofbirth"];
 	$sql = "UPDATE user SET dateofbirth='".$dateofbirth."' WHERE uid=".$UID.";";
-	echo "SQL: ".$sql."<br />";
+//	echo "SQL: ".$sql."<br />";
 	$result = $mysqli->query($sql);
 	
 	//Phone information
 	$sql = "INSERT INTO phone_list(user_id, phone_number, primary_phone) VALUES(".$UID.", ".$_POST["phone_number"].", 1)";
-	echo "SQL: ".$sql."<br />";
+//	echo "SQL: ".$sql."<br />";
 
 	$result = $mysqli->query($sql);
 	//Add optional address information
@@ -123,34 +123,34 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	$result = $mysqli->query($sql);
 
 	$sql = "UPDATE mail_address SET state=\"".$_POST["state"]."\" WHERE user_id=".$UID.";";
-	echo "SQL: ".$sql."<br />";
+//	echo "SQL: ".$sql."<br />";
 
 	$result = $mysqli->query($sql);
 
 	$sql = "UPDATE mail_address SET city=\"".$_POST["city"]."\" WHERE user_id=".$UID.";";
 	
 	$result = $mysqli->query($sql);
-	echo "SQL: ".$sql."<br />";
+//	echo "SQL: ".$sql."<br />";
 
 	$sql = "UPDATE mail_address SET zip=".$_POST["zip"]." WHERE user_id=".$UID.";";
 	
 	$result = $mysqli->query($sql);
-	echo "SQL: ".$sql."<br />";
+//	echo "SQL: ".$sql."<br />";
 
 	$sql = "UPDATE mail_address SET street=\"".$_POST["streetname"]."\" WHERE user_id=".$UID.";";
-	echo "SQL: ".$sql."<br />";
+//	echo "SQL: ".$sql."<br />";
 
 	$result = $mysqli->query($sql);
 
 	$sql = "UPDATE mail_address SET street_num=".$_POST["streetnumber"]." WHERE user_id=".$UID.";";
-	echo "SQL: ".$sql."<br />";
+//	echo "SQL: ".$sql."<br />";
 
 	$result = $mysqli->query($sql);
 
 
 
-
-	    //header('location:index.php');
+	echo "Account creation successful. Please log in.";
+	   // header('location:index.php');
         }
         else {
             echo "Darn! that email is taken :( Try another!";
