@@ -91,8 +91,9 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	
 	//Phone information
 	$sql = "INSERT INTO phone_list(user_id, phone_number, primary_phone) VALUES(".$UID.", ".$_POST["phone_number"].", 1)";
-
 	$result = $mysqli->query($sql);
+
+
 	//Add optional address information
 	$sql = "INSERT INTO mail_address(user_id) VALUES(".$UID.")";
 	$result = $mysqli->query($sql);

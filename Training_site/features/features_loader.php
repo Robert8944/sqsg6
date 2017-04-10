@@ -16,6 +16,9 @@ include '/var/www/html/sqsg6/sql_connector.php';
 */
 function get_version_number($name, $uid){
 	global $mysqli;
+	
+	//Retrieve the feature number of the feature being loaded
+	//The $name parameter originally comes from the parameter passed to the features_loader function
 	$sql2 = "SELECT * FROM features_available WHERE name=\"".$name."\";";
 	$result2 = $mysqli->query($sql2);
 	$feature_number = 0;
@@ -27,6 +30,10 @@ function get_version_number($name, $uid){
 			break;
 		}
 	}
+
+	//Retrieve all features corresponding to the feature id (found with the code above) and the logged-in user's id
+	//This code considers the (unintentional) error in which more than one version of the same error has been assigned to the same account.
+	//In such a case, the version last assigned to the user is loaded.
 	$sql3 = "SELECT * FROM assigned_features WHERE user_id=".$uid." AND feature_number=".$feature_number." ORDER BY id DESC;";
 	$result3 = $mysqli->query($sql3);
 	if($result3->num_rows > 0)
@@ -41,15 +48,20 @@ function get_version_number($name, $uid){
 }
 
 /** feature_loader is the function that allows each user account to see a custom version of the website.
-*
+* The $name feature names the feature requested by a webpage's php code.
+* For example, "phonesub" refers to the feature that lists a user's phone subscriptions.
+* The $user_email parameter is retrieved from a session variable of the logged-in user.
 */
 function feature_loader($name, $user_email){
-
-	global $mysqli;
+	
+	global $mysqli; //This line is needed to make use of the sql_connector file (imported at the start of this file)
+	
+	//Retrieves the number identifying what version of the requested feature to use
 	$version_number = get_version_number($name, $user_email);
+
+	//Retrieve features corresponding to the name of the feature (as requested by the code that called this function)
 	$sql = "SELECT * FROM features_available WHERE name=\"".$name."\";";
 	$result = $mysqli->query($sql);
-	
 	if($result->num_rows > 0)
 	{
 
