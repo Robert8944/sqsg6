@@ -87,30 +87,8 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 	<form  class= "form-horizontal"action="" method="post">
 		<?php	
 			$UID = $_SESSION['user'];
-			//Retrieves info from user table
-/*			
-			$query = "select Name, Email, level from user where UID = ?";
-			$stmt = $mysqli->prepare($query);
-			$stmt->bind_param("s",$UID);
-			$stmt->execute();
-			$stmt->bind_result($name, $email, $level);
-			$stmt->fetch();
-			$stmt->close();			
-*/	
-
-			//Retrieves level information from level table
-/*		
-			$query = "select title from levels where id = ?";
-			$stmt = $mysqli->prepare($query);
-			$stmt->bind_param("s",$level);
-			$stmt->execute();
-			$stmt->bind_result($rank);
-			$stmt->fetch();
-			$stmt->close();
-*/			
 			
-			//Display name
-		///*
+	//Display name
 			$query = "select Name, Email, level from user where UID = ?";
 			$stmt = $mysqli->prepare($query);
 			$stmt->bind_param("s",$UID);
@@ -118,7 +96,7 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			$stmt->bind_result($name, $email, $level);
 			$stmt->fetch();
 			$stmt->close();	
-		//*/
+			
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Name</label>';
 			echo '<div class="col-sm-5">';
@@ -154,7 +132,6 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			echo '<label class="control-label col-sm-5" >Rank</label>';
 			echo '<div class="col-sm-5">';
 			if(isset($_POST['edit'])) {
-			//	echo '<input type="email" name="email" size="30" value="'.$email.'" />';
 				echo $rank;			
 			}
 			else {

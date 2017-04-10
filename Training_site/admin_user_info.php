@@ -69,10 +69,6 @@ if(isset($_POST['Save'])) {	//won't execute code unless button is clicked
 }
 
 
-
-
-
-
 //makes table to display table header
 $query = "SELECT * FROM user";
 $result = $mysqli->query($query);
@@ -143,7 +139,6 @@ echo "</table>";
 
 		echo "<tr>";
 		echo "<td>";
-	//	/*
 		echo "<form action=\"group_operations/remove_from_group.php\" method=\"post\">";
 		echo "User email: <input type=\"text\" name=\"username\" id=\"username\">";
 		
@@ -151,7 +146,6 @@ echo "</table>";
 		
 		echo "<button class = \"btn btn-primary\" type=\"submit\" value=\"Remove\"> Remove </button>";
 		echo "</form>";
-	//*/
 		echo "</td>";
 		echo "</tr>";
 		echo "<tr>";
@@ -167,7 +161,6 @@ echo "</table>";
 //Add/remove group leaders
 		echo "<tr>";
 		echo "<td>";
-///*		
 		echo "<form action=\"group_operations/promote_to_leader.php\" method=\"post\">";
 		echo "User email: <input type=\"text\" name=\"username\" id=\"username\">";
 		
@@ -175,7 +168,6 @@ echo "</table>";
 		
 		echo "<button class = \"btn btn-primary\" type=\"submit\" value=\"Add\"> Add </button>";
 		echo "</form>";
-//*/		
 		echo "</td>";
 		echo "</tr>";
 
@@ -192,32 +184,11 @@ echo "</table>";
 		echo "</tr>";
 		echo "<tr>";
 		echo "<td>";
-		//echo "</form>";
 
 	echo '</table>';
 
 	//close database
 $mysqli->close();
-/*
-if(isset($_POST['add'])){
-    echo '<form action="Processes/add_product.php" method="post">';
-    echo'<tr> <td>'."Product ID".'</td> 
-	 <td>'. '<input type="text" name="name" size="15" />'.'</td>
-     <td>'. '$<input type="number" step= "0.01" name="price" min = "0" size="30"/>'.'</td>';
-    if ($_SESSION['priv']=='2'){
-        echo '<td>'. '<input type="number" step= "1" name="promo" min = "0" max = "100" size="30" value="'.$row['promo']*100 .'" />%'.'</td>';}
-    else{
-        echo '<td>'. '<input type="hidden" step= "1" name="promo" min = "0" max = "100" size="30" value="'.$row['promo']*100 .'" />'.'</td>';
-    }
-    echo '<td>'. '<input type="text" name="quant" size="15" />'.'</td>   </tr></table>';
-    echo ' <button class = "btn btn-primary" type="submit" name ="submit" value="sent">Submit</button>';
-}
-else{
-    echo '<tr><form action="#add" method="post"> <td>
-		<button class = "btn btn-primary" type="submit" name ="add" value="add">Add Entry</button></td></tr>';
-    echo'</table>';
-}
-*/
 ?>
 
 

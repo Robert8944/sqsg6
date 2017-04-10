@@ -9,6 +9,8 @@ The navigation bar at the top of the page changes when the user is logged in. It
 When the user is not logged in, there are only links to the homepage (index.php), the login page (user_login.php), and the account creation page (user_registration.php).
 
 */
+
+//Load the header and the sql connection file
 include 'config/header.php';
 require_once('../sql_connector.php');
 
@@ -66,7 +68,7 @@ if(isset($_SESSION['SubscriptionReport']))
 	</div>
   </body>
 <?php
-
+/* Currently the footer is just a simple example of the features_loader function. */
 include "footer.php"; 
 ?>
 </div>

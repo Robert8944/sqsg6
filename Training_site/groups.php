@@ -16,9 +16,6 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 }
 ?>
 
-<?php
-feature_loader("test", $_SESSION["user"]);
-?>
 
 
 <html>		
@@ -83,22 +80,5 @@ feature_loader("test", $_SESSION["user"]);
 			echo "<br />";
 			echo '</div></div>';
 
-/*		
-		$name = "Default name";
-		$email = "Default email";
-
-	// Display name
-		echo '<div class="form-group">';
-		echo '<label class="control-label col-sm-5" >Name</label>';
-		echo '<div class="col-sm-5">';
-		echo $name;
-		echo '</div></div>';
-	// Display email	
-		echo '<div class="form-group">';
-		echo '<label class="control-label col-sm-5" >Email</label>';
-		echo '<div class="col-sm-5">';
-		echo $email;
-		echo '</div></div>';
-*/
 	?>
 </form>
