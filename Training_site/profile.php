@@ -1,5 +1,14 @@
 
-<?php include 'config/header.php';
+<?php 
+/**
+For users logged in, this page presents information describing that user.
+To do this it draws from the user, group_members, mail_address, and phone_list database tables. 
+The features_loader function is called to load the group, phone number, and mailing address information. The features_loader function refers to the assigned_features function to see what version of this information to display, and then loads the appropriate php file within the "features" folder.
+If an account does not have an assigned feature in the assigned_features table, the feature loader loads the default (that is, fully functional) version of that website feature. 
+For example, note that the John Doe account is listed as belonging to both groups A and B on the Groups page. However, the View Profile page claims that John Doe does not belong to any groups. This is because, when the profile page calls the features_loader function to retrieve group information, it loads an erroneous version of the group retrieval code.
+*/
+
+include 'config/header.php';
 require_once('../sql_connector.php');
 require_once('../feature_connector.php');
 ?>

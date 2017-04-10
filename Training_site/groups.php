@@ -1,8 +1,13 @@
-<?php include 'config/header.php';
+<?php 
+/**
+This file displays the different groups that exist on the website, their leaders and their other members. It first displays a list of the groups on the website. Next, it lists the members for each of the groups. Members that have been labeled with "leader" by an administrative account (as performed on the Admin Page, "admin_user_info.php") are labeled with "leader" next to their names.
+*/
+
+include 'config/header.php';
 require_once('../sql_connector.php');
 require_once("../feature_connector.php");
-//$features_loader_path =  $_SERVER["DOCUMENT_ROOT"].'/'.'Training_site/features/features_loader.php';
-//require_once($features_loader_path);
+
+
 ?>
 
 <?php

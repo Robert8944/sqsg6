@@ -1,5 +1,15 @@
 
-<?php include 'config/header.php';
+<?php 
+/** index.php
+This file is the homepage for the website. 
+If the website visitor is not logged in, it gives login instructions (for now).
+If the visitor is logged in, the homepage presents a form for entering phone numbers to associate with the user account.
+
+The navigation bar at the top of the page changes when the user is logged in. It is loaded from the file "header.php" in the "config" folder.
+When the user is not logged in, there are only links to the homepage (index.php), the login page (user_login.php), and the account creation page (user_registration.php).
+
+*/
+include 'config/header.php';
 require_once('../sql_connector.php');
 
 ?>

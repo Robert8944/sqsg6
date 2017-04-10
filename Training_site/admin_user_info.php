@@ -1,3 +1,11 @@
+<?php
+/**
+This page shows information relevant to an administrator.
+It only shows this information to accounts with the Admin ranking.
+Administrators can add or remove users to or from groups. They can also promote users to leadership positions on that group or strip users of that ranking.
+*/
+
+?>
 <html>
 <head>
 <?php include 'config/header.php'; ?>

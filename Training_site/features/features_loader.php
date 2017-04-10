@@ -1,8 +1,14 @@
 <?php
-//include "../../sql_connector.php";
+/**
+This file contains the function used to customize user accounts.
+The function is called "feature_loader". With the help of its helper function "get_version_number", it loads the php code for assigned features.
+
+For example, log in as johndoe@example.com (password "asdf") note the text "erroneous loaded footer 3" at the bottom of the index.php page. This is a trivial example of an assigned error. If logged in with an account that was not assigned that particular feature, the footer will instead say "loaded footer". 
+*/
+
 include '/var/www/html/sqsg6/sql_connector.php';
-//echo "global xyz is ".$xyz;
-//echo "sql connector: ".$_SERVER["DOCUMENT_ROOT"].'/'.'sqsg6/sql_connector.php'."<br />";
+
+
 
 
 /**

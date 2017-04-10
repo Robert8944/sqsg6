@@ -1,6 +1,13 @@
 
 
-<?php include 'config/header.php'; //conects to database
+<?php 
+/**
+This file is where users can create accounts.
+Accounts created on this page are automically given a ranking of "3", which is simply an account without administrative privileges (further distinctions between account rankings may be given in the future).
+Only the name, email, and password information must be created to create an account.
+Errors will not be introduced to this page any time soon because specific errors can currently only be associated with users who are logged in.
+*/
+include 'config/header.php'; //conects to database
 require_once('../sql_connector.php');?>
 
 
