@@ -1,5 +1,14 @@
 
-<?php include 'config/header.php';
+<?php 
+/**
+For users logged in, this page presents information describing that user.
+To do this it draws from the user, group_members, mail_address, and phone_list database tables. 
+The features_loader function is called to load the group, phone number, and mailing address information. The features_loader function refers to the assigned_features function to see what version of this information to display, and then loads the appropriate php file within the "features" folder.
+If an account does not have an assigned feature in the assigned_features table, the feature loader loads the default (that is, fully functional) version of that website feature. 
+For example, note that the John Doe account is listed as belonging to both groups A and B on the Groups page. However, the View Profile page claims that John Doe does not belong to any groups. This is because, when the profile page calls the features_loader function to retrieve group information, it loads an erroneous version of the group retrieval code.
+*/
+
+include 'config/header.php';
 require_once('../sql_connector.php');
 require_once('../feature_connector.php');
 ?>
@@ -78,30 +87,8 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 	<form  class= "form-horizontal"action="" method="post">
 		<?php	
 			$UID = $_SESSION['user'];
-			//Retrieves info from user table
-/*			
-			$query = "select Name, Email, level from user where UID = ?";
-			$stmt = $mysqli->prepare($query);
-			$stmt->bind_param("s",$UID);
-			$stmt->execute();
-			$stmt->bind_result($name, $email, $level);
-			$stmt->fetch();
-			$stmt->close();			
-*/	
-
-			//Retrieves level information from level table
-/*		
-			$query = "select title from levels where id = ?";
-			$stmt = $mysqli->prepare($query);
-			$stmt->bind_param("s",$level);
-			$stmt->execute();
-			$stmt->bind_result($rank);
-			$stmt->fetch();
-			$stmt->close();
-*/			
 			
-			//Display name
-		///*
+	//Display name
 			$query = "select Name, Email, level from user where UID = ?";
 			$stmt = $mysqli->prepare($query);
 			$stmt->bind_param("s",$UID);
@@ -109,7 +96,7 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			$stmt->bind_result($name, $email, $level);
 			$stmt->fetch();
 			$stmt->close();	
-		//*/
+			
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Name</label>';
 			echo '<div class="col-sm-5">';
@@ -145,7 +132,6 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			echo '<label class="control-label col-sm-5" >Rank</label>';
 			echo '<div class="col-sm-5">';
 			if(isset($_POST['edit'])) {
-			//	echo '<input type="email" name="email" size="30" value="'.$email.'" />';
 				echo $rank;			
 			}
 			else {

@@ -1,8 +1,13 @@
-<?php include 'config/header.php';
+<?php 
+/**
+This file displays the different groups that exist on the website, their leaders and their other members. It first displays a list of the groups on the website. Next, it lists the members for each of the groups. Members that have been labeled with "leader" by an administrative account (as performed on the Admin Page, "admin_user_info.php") are labeled with "leader" next to their names.
+*/
+
+include 'config/header.php';
 require_once('../sql_connector.php');
 require_once("../feature_connector.php");
-//$features_loader_path =  $_SERVER["DOCUMENT_ROOT"].'/'.'Training_site/features/features_loader.php';
-//require_once($features_loader_path);
+
+
 ?>
 
 <?php
@@ -11,9 +16,6 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 }
 ?>
 
-<?php
-feature_loader("test", $_SESSION["user"]);
-?>
 
 
 <html>		
@@ -78,22 +80,5 @@ feature_loader("test", $_SESSION["user"]);
 			echo "<br />";
 			echo '</div></div>';
 
-/*		
-		$name = "Default name";
-		$email = "Default email";
-
-	// Display name
-		echo '<div class="form-group">';
-		echo '<label class="control-label col-sm-5" >Name</label>';
-		echo '<div class="col-sm-5">';
-		echo $name;
-		echo '</div></div>';
-	// Display email	
-		echo '<div class="form-group">';
-		echo '<label class="control-label col-sm-5" >Email</label>';
-		echo '<div class="col-sm-5">';
-		echo $email;
-		echo '</div></div>';
-*/
 	?>
 </form>
