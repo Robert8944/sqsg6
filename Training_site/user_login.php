@@ -5,11 +5,9 @@ require_once('../sql_connector.php');?>
 
 
 <?php
-/*
 if (isset($_SESSION['user'])){      //redirects if user isn't a user
     header('location:index.php');
 }
-*/
 if(isset($_POST['submit'])) {          //waits for button press
     $EmailError = False;
     $passwordError = False;
@@ -31,15 +29,13 @@ if(isset($_POST['submit'])) {          //waits for button press
 
     //updates info
     if ($passwordError == False and $EmailError == False) {
-        $stmt = $mysqli->prepare('SELECT UID,Name,level FROM user WHERE email = ? AND password = ? LIMIT 1');
+        $stmt = $mysqli->prepare('SELECT UID,Name,is_admin FROM user WHERE email = ? AND password = ? LIMIT 1');
         $stmt->bind_param("ss", $email,$password );
-        $stmt->bind_result($UID, $name, $level);
+        $stmt->bind_result($UID, $name, $admin);
         $stmt->execute();
         $results = $stmt->fetch();
         if ($results == 1) {
             session_start();
-	    $admin = ($level == 5);
-	    //echo "admin: ".$admin;
             if ($admin)
                 $_SESSION['priv'] = '1';
             else
@@ -59,36 +55,35 @@ if(isset($_POST['submit'])) {          //waits for button press
 ?>
 
 <html>
-<form  class= "form-horizontal"action="" method="post">
+<!DOCTYPE html>
+<div class="container">
+    <form  class= "form-horizontal"action="" method="post">
 
 
-        <div class="form-group">
-            <label class="control-label col-sm-5">Email</label>
-            <div class="col-sm-7">
-                <input type="email" name="email" size="30" </label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-sm-5">Password</label>
-            <div class="col-sm-7">
-            <input type="password" name="password" size="30" /></label>
+            <div class="form-group" id="inputbox">
+                <label class="control-label col-sm-5">Email</label>
+                <div class="col-sm-7">
+                    <input type="email" name="email" size="30" </label>
                 </div>
-        </div>
-
-
-
-
-        <div class="form-group">
-            <div class="control-label col-sm-6">
-            <input class="btn btn-default" type="submit" name="submit" value="Send"/></label>
             </div>
-        </div>
+
+            <div class="form-group" id="inputbox">
+                <label class="control-label col-sm-5">Password</label>
+                <div class="col-sm-7">
+                <input type="password" name="password" size="30" /></label>
+                    </div>
+            </div>
+
+            <div class="form-group" id="inputbox">
+                <div class="control-label col-sm-6">
+                <input class="btn btn-default" type="submit" name="submit" value="Send"/></label>
+                </div>
+            </div>
 
 
 
-</form>
-
+    </form>
+</div>
 
 
 
