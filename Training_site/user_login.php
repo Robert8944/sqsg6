@@ -38,8 +38,8 @@ if(isset($_POST['submit'])) {          //waits for button press
         $results = $stmt->fetch();
         if ($results == 1) {
             session_start();
-	    $admin = ($level == 5);
-	    //echo "admin: ".$admin;
+            $admin = ($level == 5);
+            //echo "admin: ".$admin;
             if ($admin)
                 $_SESSION['priv'] = '1';
             else
@@ -59,48 +59,31 @@ if(isset($_POST['submit'])) {          //waits for button press
 ?>
 
 <html>
-<form  class= "form-horizontal"action="" method="post">
+<!DOCTYPE html>
+<div class="container">
+    <form  class= "form-horizontal"action="" method="post">
 
-
-        <div class="form-group">
+        <div class="form-group" id="inputbox">>
             <label class="control-label col-sm-5">Email</label>
             <div class="col-sm-7">
                 <input type="email" name="email" size="30" </label>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="inputbox">
             <label class="control-label col-sm-5">Password</label>
             <div class="col-sm-7">
-            <input type="password" name="password" size="30" /></label>
-                </div>
-        </div>
-
-
-
-
-        <div class="form-group">
-            <div class="control-label col-sm-6">
-            <input class="btn btn-default" type="submit" name="submit" value="Send"/></label>
+                <input type="password" name="password" size="30" /></label>
             </div>
         </div>
 
+        <div class="form-group" id="inputbox">
+            <div class="control-label col-sm-6">
+            <input class="btn btn-default" type="submit" name="submit" value="Sign in"/></label>
+            </div>
+        </div>
 
+    </form>
+</div>
 
-</form>
-
-
-
-
-
-
-<?php
-/**
- * Created by PhpStorm.
- * User: Kevin Joiner
- * Date: 4/3/2016
- * Time: 3:05 AM
- */
-
-?>
 </html>
