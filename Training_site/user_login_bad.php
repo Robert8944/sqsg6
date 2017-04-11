@@ -42,7 +42,6 @@ if(isset($_POST['submit'])) {          //waits for button press
 <div class="container">
     <form  class= "form-horizontal"action="" method="post">
 
-
         <div class="form-group" id="inputbox">
             <label class="control-label col-sm-5">Email</label>
             <div class="col-sm-7">
@@ -57,32 +56,13 @@ if(isset($_POST['submit'])) {          //waits for button press
             </div>
         </div>
 
-
-
-
         <div class="form-group" id="inputbox">
             <div class="control-label col-sm-6">
                 <input class="btn btn-default" type="submit" name="submit" value="Send"/></label>
             </div>
         </div>
 
-
-
     </form>
 </div>
 
-
-
-
-
-
-<?php
-/**
- * Created by PhpStorm.
- * User: Kevin Joiner
- * Date: 4/3/2016
- * Time: 3:05 AM
- */
-
-?>
 </html>
