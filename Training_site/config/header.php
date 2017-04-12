@@ -34,11 +34,11 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav"> 
-		<li><a href="./">Home </a></li>
+		      <li><a href="./">Home </a></li>
               <?php
                 if(isset($_SESSION['priv'])){
                     echo '<li> <a href = "profile.php">  View Profile </a></li> ';
-		     echo '<li> <a href = "groups.php">  Groups </a></li> ';
+		                echo '<li> <a href = "groups.php">  Groups </a></li> ';
 
                     if($_SESSION['priv'] == '1'){
                         echo '<li> <a href ="admin_user_info.php">  Admin Page </a></li>';
