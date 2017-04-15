@@ -36,6 +36,6 @@ $result3 = $mysqli->query($sql3);
 //echo "username: ".$username."<br />";
 //echo "group_id: ".$group_id."<br />";
 //echo "uid: ".$uid."<br />";
-
-echo "<meta http-equiv=\"refresh\" content=\"0; url=../admin_user_info.php\">";
+echo "<meta http-equiv=\"refresh\" content=\"0; url=".$_SERVER['HTTP_REFERER']."\">";
+//echo "<meta http-equiv=\"refresh\" content=\"0; url=../admin_user_info.php\">";
 ?>

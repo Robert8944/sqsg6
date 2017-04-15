@@ -107,13 +107,33 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
      <td>'. $row['UID'].'</td> 
 	 <td>'. $row['Name'].'</td>
      <td>'. $row['Email'].'</td>';
-     if ($row['is_admin']== 1)
+     if ($row['level']== 5)
+	{
             echo '<td>Admin</td>';
+	}
+    else if($row['level'] == 4)
+	{
+		echo '<td>Super user</td>';
+	}
+    else if($row['level'] == 3)
+	{
+		echo '<td>User</td>';
+	}
+    else if($row['level'] == 2)
+	{
+		echo '<td>Restricted user</td>';
+	}
+    else if($row['level'] == 1)
+	{
+		echo 'Error'; //Level 1 should only correspond to non-logged in vistors to the website
+	}
      else
-         echo '<td>User</td>';
-	 echo '<td> <form action="#edit" method="post"> 
-		<button class = "btn btn-primary" type="submit" name ="UID" value="'.$row['UID'].'">Edit</button></td>  </form> </tr>';
-    }
+	{
+		echo 'Error'; //The current level definitions are only for levels 1-5
+	}
+         
+	     
+}
 }
 echo "</table>";
 	echo '<table class="table tabel-striped">';

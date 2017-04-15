@@ -60,4 +60,6 @@ $result4 = $mysqli->query($sql4);
 //echo "uid: ".$uid."<br />";
 //echo "Called";
 echo "<meta http-equiv=\"refresh\" content=\"0; url=../admin_user_info.php\">";
+
+//echo "<meta http-equiv=\"refresh\" content=\"0; url=../admin_user_info.php\">";
 ?>

@@ -12,7 +12,7 @@ Administrators can add or remove users to or from groups. They can also promote 
 </head>
 <body id = "inventory">
 <?php
-if ($_SESSION['level']!='4' && $_SESSION['level']!='5'){	//redirect user to index page if the user isn't an admin or superuser
+if ($_SESSION['level']!='5' && $_SESSION['level'] != '4'){	//redirect user to index page if the user isn't either an admin or a superuser
     header('location:index.php');
 }
 ?>
@@ -107,11 +107,33 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
      <td>'. $row['UID'].'</td> 
 	 <td>'. $row['Name'].'</td>
      <td>'. $row['Email'].'</td>';
-     if ($row['is_admin']== 1)
+     if ($row['level']== 5)
+	{
             echo '<td>Admin</td>';
+	}
+    else if($row['level'] == 4)
+	{
+		echo '<td>Super user</td>';
+	}
+    else if($row['level'] == 3)
+	{
+		echo '<td>User</td>';
+	}
+    else if($row['level'] == 2)
+	{
+		echo '<td>Restricted user</td>';
+	}
+    else if($row['level'] == 1)
+	{
+		echo 'Error'; //Level 1 should only correspond to non-logged in vistors to the website
+	}
      else
-         echo '<td>User</td>';
-	     }
+	{
+		echo 'Error'; //The current level definitions are only for levels 1-5
+	}
+         
+	     
+}
 }
 echo "</table>";
 	echo '<table class="table tabel-striped">';
@@ -146,7 +168,7 @@ echo "</table>";
 		echo "</form>";
 		echo "</td>";
 		echo "</tr>";
-		echo "<tr>";
+	/*	echo "<tr>";
 		echo "<td>";
 		echo "<h3>Add/remove group leaders</h3>";
 		echo "</td>";
@@ -182,7 +204,7 @@ echo "</table>";
 		echo "</tr>";
 		echo "<tr>";
 		echo "<td>";
-
+*/
 	echo '</table>';
 
 	//close database
