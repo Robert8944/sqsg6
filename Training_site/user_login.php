@@ -38,13 +38,17 @@ if(isset($_POST['submit'])) {          //waits for button press
         $results = $stmt->fetch();
         if ($results == 1) {
             session_start();
+	    $_SESSION['level'] = $level;
+	    $_SESSION['priv'] = '1'; //delete soon
+	/*
 	    $admin = ($level == 5);
 	    //echo "admin: ".$admin;
             if ($admin)
                 $_SESSION['priv'] = '1';
             else
                 $_SESSION['priv'] = $admin;
-            $_SESSION['user'] = $UID;
+          */
+	     $_SESSION['user'] = $UID;
             $_SESSION['name'] = $name;
             header('location:index.php');
         } else {

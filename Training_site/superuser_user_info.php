@@ -12,7 +12,7 @@ Administrators can add or remove users to or from groups. They can also promote 
 </head>
 <body id = "inventory">
 <?php
-if ($_SESSION['level']!='5'){	//redirect user to index page if the user isn't an admin
+if ($_SESSION['level']!='4' && $_SESSION['level']!='5'){	//redirect user to index page if the user isn't an admin or superuser
     header('location:index.php');
 }
 ?>
@@ -111,9 +111,7 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
             echo '<td>Admin</td>';
      else
          echo '<td>User</td>';
-	 echo '<td> <form action="#edit" method="post"> 
-		<button class = "btn btn-primary" type="submit" name ="UID" value="'.$row['UID'].'">Edit</button></td>  </form> </tr>';
-    }
+	     }
 }
 echo "</table>";
 	echo '<table class="table tabel-striped">';
