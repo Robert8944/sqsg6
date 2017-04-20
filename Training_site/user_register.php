@@ -1,6 +1,6 @@
 
 
-<?php 
+<?php
 /**
 This file is where users can create accounts.
 Accounts created on this page are automically given a ranking of "3", which is simply an account without administrative privileges (further distinctions between account rankings may be given in the future).
@@ -19,7 +19,7 @@ if(isset($_POST['submit'])) {		//waits for buttons press
     $passwordError = False;
     $passwordsMatch = False;
     $NameError = False;
-	
+
 	//makes sure that pasword and email aren't sql queries
     if (preg_match('%[A-Za-z0-9\.\-\$\@\$\!\%\*\#\?\&]%', stripslashes(trim($_POST['password'])))) {
         if($_POST['password'] == $_POST['confirmpassword'])
@@ -49,7 +49,7 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	//updates info
     if($passwordsMatch == False)
 	{
-		echo "Error: You did not type the same password twice.";	
+		echo "Error: You did not type the same password twice.";
 	}
     else if ($passwordError == False and $EmailError == False and $NameError == False) {
 
@@ -60,9 +60,9 @@ if(isset($_POST['submit'])) {		//waits for buttons press
         $stmt->execute();
         $results = $stmt->fetch();
 
-	
+
 	//If the account was successfully created, log the user into the new account
-        
+
 	if ($mysqli->affected_rows == 1) {
 
 	$sql = "SELECT * FROM user WHERE Email=\"".$email."\";";
@@ -72,13 +72,13 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	{
 		while($row = $result->fetch_assoc())
 		{
-			$UID = $row["UID"];	
+			$UID = $row["UID"];
 		}
 	}
 
 	 //Add the optional information, if available
 	//Add optional user information
-		
+
 	//Gender
 	$sql = "UPDATE user SET gender=\"".$_POST['gender']."\" WHERE uid=".$UID.";";
 	$result = $mysqli->query($sql);
@@ -88,7 +88,7 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	$dateofbirth = $_POST["yearofbirth"]."-".$_POST["monthofbirth"]."-".$_POST["dayofbirth"];
 	$sql = "UPDATE user SET dateofbirth='".$dateofbirth."' WHERE uid=".$UID.";";
 	$result = $mysqli->query($sql);
-	
+
 	//Phone information
 	$sql = "INSERT INTO phone_list(user_id, phone_number, primary_phone) VALUES(".$UID.", ".$_POST["phone_number"].", 1)";
 	$result = $mysqli->query($sql);
@@ -103,11 +103,11 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	$result = $mysqli->query($sql);
 
 	$sql = "UPDATE mail_address SET city=\"".$_POST["city"]."\" WHERE user_id=".$UID.";";
-	
+
 	$result = $mysqli->query($sql);
 
 	$sql = "UPDATE mail_address SET zip=".$_POST["zip"]." WHERE user_id=".$UID.";";
-	
+
 	$result = $mysqli->query($sql);
 
 	$sql = "UPDATE mail_address SET street=\"".$_POST["streetname"]."\" WHERE user_id=".$UID.";";
@@ -141,15 +141,15 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 
     <form  class="form-horizontal" action="" method="post">
         <div >
-        	
+
              <div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5" >Asterisks (*) indicate required fields</label>
                  <div class="col-sm-7">
-                
+
                     </div>
 
             </div>
-  
+
             <div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5" >* Name</label>
                 <div class="col-sm-7">
@@ -163,7 +163,7 @@ if(isset($_POST['submit'])) {		//waits for buttons press
                 <input type="text" name="email" size="30" </label>
                 </div>
             </div>
-	
+
 
 
             <div class="form-group" id="centerbox">
@@ -180,20 +180,21 @@ if(isset($_POST['submit'])) {		//waits for buttons press
             </div>
 	  <div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5">Gender</label>
-                <div class="col-sm-7">
-                <input type="radio" name="gender" value="Female"/> Female <br />
-		<input type="radio" name="gender" value="Male"/> Male <br />
+                <div class="col-sm-7b">
+                  <input type="radio" name="gender" value="Female"/> Female <br />
+                </div><div class="col-sm-7c">
+                  <input type="radio" name="gender" value="Male"/> Male <br />
                 </div>
             </div>
- 
+
 
 	 <div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5">Date of birth (MM/DD/YYYY)</label>
                 <div class="col-sm-7">
                 <input type="text" name="monthofbirth" size="6" /> /
                 <input type="text" name="dayofbirth" size="6" /> /
-		<input type="text" name="yearofbirth" size="6" /> 
-		
+		<input type="text" name="yearofbirth" size="6" />
+
 		</div>
             </div>
   	<div class="form-group" id="centerbox">
@@ -202,12 +203,7 @@ if(isset($_POST['submit'])) {		//waits for buttons press
                 <input type="text" name="phone_number" size="30" />
                 </div>
             </div>
- 	 <div class="form-group" id="centerbox">
-                <label class="control-label col-sm-5">Mailing address</label>
-		<div class="col-sm-7">
-                
-                </div>
-            </div>
+
 	<div class="form-group" id="centerbox">
                 <label class="control-label col-sm-5">Street name</label>
                 <div class="col-sm-7">
