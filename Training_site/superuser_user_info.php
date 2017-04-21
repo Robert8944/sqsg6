@@ -12,7 +12,7 @@ Administrators can add or remove users to or from groups. They can also promote 
 </head>
 <body id = "inventory">
 <?php
-if ($_SESSION['level']!='5'){	//redirect user to index page if the user isn't an admin
+if ($_SESSION['level']!='5' && $_SESSION['level'] != '4'){	//redirect user to index page if the user isn't either an admin or a superuser
     header('location:index.php');
 }
 ?>
@@ -67,8 +67,7 @@ if(isset($_POST['Save'])) {	//won't execute code unless button is clicked
     }
 
 }
-//Simple introduction to the page
-echo '<h2 style="padding-left: 1.9em;"> Welcome, Admin </h2>';
+
 
 //makes table to display table header
 $query = "SELECT * FROM user";
@@ -169,7 +168,7 @@ echo "</table>";
 		echo "</form>";
 		echo "</td>";
 		echo "</tr>";
-		echo "<tr>";
+	/*	echo "<tr>";
 		echo "<td>";
 		echo "<h3>Add/remove group leaders</h3>";
 		echo "</td>";
@@ -205,7 +204,7 @@ echo "</table>";
 		echo "</tr>";
 		echo "<tr>";
 		echo "<td>";
-
+*/
 	echo '</table>';
 
 	//close database

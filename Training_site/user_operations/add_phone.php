@@ -125,8 +125,7 @@ if(isset($_POST['submit'])) {
 		}
     }
     else {
-        //echo '<h2 style = "text-align: center">Phone number entered was invalid. Please enter numbers only!<h2>';
-   	$subscriptionReport =  '<h2 style = "text-align: center">Phone number entered was invalid. Please enter numbers only!</h2>';
+   	$subscriptionReport =  '<h2 style = "text-align: center; color:red">Phone number entered was invalid. Please enter numbers only!</h2>';
 
 	 }
 //*/
