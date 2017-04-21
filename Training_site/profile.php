@@ -14,6 +14,7 @@ require_once('../feature_connector.php');
 ?>
 
 <?php
+//Redirection is not strictly needed
 if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
     header('location:index.php');
 }
