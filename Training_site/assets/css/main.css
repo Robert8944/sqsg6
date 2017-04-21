@@ -38,17 +38,19 @@
 }*/
 
 #heading .nav li a img{
-	height: 45px;
+	height: 60px;
 	width: 80px;
 	margin: auto;
 }
 
 #heading2 .nav li a img{
-	height: 45px;
-	width: 95px;
+	height: auto;
+	width: 80px;
 	margin: auto;
 	padding-left: 15px;
 	padding-right: -15px;
+	padding-bottom: 10px;
+	padding-top: 10px;
 }
 
 .navbar-default .navbar-toggle {
