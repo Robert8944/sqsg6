@@ -67,7 +67,8 @@ if(isset($_POST['Save'])) {	//won't execute code unless button is clicked
     }
 
 }
-
+//Simple introduction to the page
+echo '<h2 style="padding-left: 1.9em;"> Welcome, Admin </h2>';
 
 //makes table to display table header
 $query = "SELECT * FROM user";

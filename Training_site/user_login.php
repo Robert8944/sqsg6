@@ -48,7 +48,9 @@ if(isset($_POST['submit'])) {          //waits for button press
             else
                 $_SESSION['priv'] = $admin;
           */
-	     $_SESSION['user'] = $UID;
+
+	
+	     $_SESSION['user'] = $UID; //This variable used throughout file
             $_SESSION['name'] = $name;
             header('location:index.php');
         } else {
