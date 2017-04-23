@@ -49,7 +49,7 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 	//updates info
     if($passwordsMatch == False)
 	{
-		echo "Error: You did not type the same password twice.";
+		echo "<div class='container' id='error'>Error: You did not type the same password twice.</div>";
 	}
     else if ($passwordError == False and $EmailError == False and $NameError == False) {
 
@@ -120,16 +120,16 @@ if(isset($_POST['submit'])) {		//waits for buttons press
 
 
 
-	echo "Account creation successful. Please log in.";
+	echo "<div class='container' id='error'>Account creation successful. Please log in.</div>";
 	   // header('location:index.php');
         }
         else {
-            echo "Darn! that email is taken :( Try another!";
+            echo "<div class='container' id='error'>Darn! that email is taken :( Try another!</div>";
         }
 
     }
     else {
-        echo "Invalid Credentials please try again";
+        echo "<div class='container' id='error'>Invalid Credentials please try again</div>";
     }
 }
 //End of user registration sql commands
