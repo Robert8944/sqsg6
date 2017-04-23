@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once('../../sql_connector.php');
+require_once('/var/www/html/sqsg6/sql_connector.php');
 
 			$UID = $_SESSION["user"];
 
@@ -51,4 +51,5 @@ require_once('../../sql_connector.php');
 			}
 			echo '</div></div>';
 		//	$stmt->close();
+
 ?>
