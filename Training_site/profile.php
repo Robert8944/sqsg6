@@ -1,10 +1,10 @@
 
-<?php 
+<?php
 /**
 For users logged in, this page presents information describing that user.
-To do this it draws from the user, group_members, mail_address, and phone_list database tables. 
+To do this it draws from the user, group_members, mail_address, and phone_list database tables.
 The features_loader function is called to load the group, phone number, and mailing address information. The features_loader function refers to the assigned_features function to see what version of this information to display, and then loads the appropriate php file within the "features" folder.
-If an account does not have an assigned feature in the assigned_features table, the feature loader loads the default (that is, fully functional) version of that website feature. 
+If an account does not have an assigned feature in the assigned_features table, the feature loader loads the default (that is, fully functional) version of that website feature.
 For example, note that the John Doe account is listed as belonging to both groups A and B on the Groups page. However, the View Profile page claims that John Doe does not belong to any groups. This is because, when the profile page calls the features_loader function to retrieve group information, it loads an erroneous version of the group retrieval code.
 */
 
@@ -29,8 +29,8 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 		$stmt->execute();
 		$stmt->bind_result($original_email);
 		$stmt->fetch();
-		
-		
+
+
 		$EmailError = False;
 		$NameError = False;
 
@@ -72,23 +72,23 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				header("Refresh:0");
 			}
 			else if ($original_email != $email) {
-				echo "Darn! that email is taken :( Try another!";
+				echo "<div class='container' id='error'Darn! that email is taken :( Try another!</div>";
 			}
 
 		}
 		else {
-			echo "Could not update information as requested. Ensure email and name are entered correctly.";
+			echo "<div class='container' id='error'>Could not update information as requested. Ensure email and name are entered correctly.</div>";
 		}
 	}
 ?>
 
 
-<html>		
+<html>
 <div class="container">
 	<form  class= "form-horizontal"action="" method="post">
-		<?php	
+		<?php
 			$UID = $_SESSION['user'];
-			
+
 	//Display name
 			$query = "select Name, Email, level from user where UID = ?";
 			$stmt = $mysqli->prepare($query);
@@ -96,8 +96,8 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			$stmt->execute();
 			$stmt->bind_result($name, $email, $level);
 			$stmt->fetch();
-			$stmt->close();	
-			
+			$stmt->close();
+
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Name</label>';
 			echo '<div class="col-sm-5">';
@@ -108,7 +108,7 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				echo $name;
 			}
 			echo '</div></div>';
-	//Display Email		
+	//Display Email
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Email</label>';
 			echo '<div class="col-sm-5">';
@@ -119,8 +119,8 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				echo $email;
 			}
 			echo '</div></div>';
-	
-	//Display Rank		
+
+	//Display Rank
 			$query = "select title from levels where id = ?";
 			$stmt = $mysqli->prepare($query);
 			$stmt->bind_param("s",$level);
@@ -133,18 +133,18 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			echo '<label class="control-label col-sm-5" >Rank</label>';
 			echo '<div class="col-sm-5">';
 			if(isset($_POST['edit'])) {
-				echo $rank;			
+				echo $rank;
 			}
 			else {
 				echo $rank;
 			}
 			echo '</div></div>';
-			
+
 	//Load group information
-	
+
 			feature_loader("groupdisplay", $_SESSION["user"]);
 
-	//Load phone information		
+	//Load phone information
 			feature_loader("phonedisplay", $_SESSION["user"]);
 
 	//Load address information
@@ -165,4 +165,3 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			</div>
 		</div>
 </form>
-
