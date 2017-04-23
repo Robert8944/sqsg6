@@ -1,5 +1,5 @@
-<?php 
-/**
+<?php
+/*
 This file displays the different groups that exist on the website, their leaders and their other members. It first displays a list of the groups on the website. Next, it lists the members for each of the groups. Members that have been labeled with "leader" by an administrative account (as performed on the Admin Page, "admin_user_info.php") are labeled with "leader" next to their names.
 */
 
@@ -18,7 +18,8 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 
 
 
-<html>		
+<html>
+<div class="container">
 <form  class= "form-horizontal"action="" method="post">
 	<?php
 	//Display all groups
@@ -30,11 +31,11 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 		{
 			while($row = $result1->fetch_assoc())
 			{
-				
+
 				array_push($group_names, $row["name"]);
 				array_push($group_ids, $row["id"]);
 			}
-		}	
+		}
 		else
 		{
 			echo "<p> No groups could be found </p>";
@@ -67,10 +68,10 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 					{
 						$leadership = "(leader)";
 					}
-					echo $row["Name"]." ".$leadership." -- ".$row["Email"]."<br />";	
-				
+					echo $row["Name"]." ".$leadership." -- ".$row["Email"]."<br />";
+
 				}
-			}	
+			}
 			else
 			{
 				echo "<p> No members in this group </p>";
@@ -82,3 +83,5 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 
 	?>
 </form>
+</div>
+</html>
