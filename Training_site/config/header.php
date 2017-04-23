@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="assets/css/navbar.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
@@ -33,7 +33,7 @@
             </button>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav"> 
+            <ul class="nav navbar-nav">
 		      <li><a href="./">Home </a></li>
               <?php
                 if(isset($_SESSION['priv'])){
@@ -60,7 +60,7 @@
               </li>
             </ul>
 
-             
+
             <ul class="nav navbar-nav navbar-right" >
               <div style="display:flex;justify-content:flex-end;align-items:center">
               <?php if(isset($_SESSION['name'])) echo "<div class='col-sm-4'> <li> Hello ". $_SESSION['name']."</li></div> <br>"; ?>
