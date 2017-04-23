@@ -51,17 +51,17 @@ if(isset($_POST['submit'])) {          //waits for button press
                 $_SESSION['priv'] = $admin;
           */
 
-	
+
 	     $_SESSION['user'] = $UID; //This variable used throughout file
             $_SESSION['name'] = $name;
             header('location:index.php');
         } else {
-            echo "Invalid Log in Please go back and try again";
+            echo '<div id="error" class="container">Invalid Log in Please go back and try again</div>';
         }
 
     }
     else {
-        echo "Invalid Entry Please go back and try again";
+        echo '<div id="error" class="container">Invalid Log in Please go back and try again</div>';
     }
 }
 ?>
