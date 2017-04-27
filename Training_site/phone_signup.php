@@ -1,4 +1,8 @@
 		<?php 
+		/*
+		The purpose of this file is to display the form that allows logged-in users to associate phone numbers wiht their account.
+		Note: although the HTML is echoed by a PHP command, as it currently is it could just as well be pure HTML. It makes no use of PHP.
+		*/
 		echo <<<END
 		<h3>Sign up for text alerts to stay updated:</h3>
 		<form  class= "form-horizontal" action="user_operations/add_phone.php" method="post">

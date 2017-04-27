@@ -1,8 +1,8 @@
 <?php
 /**
-This page shows information relevant to an administrator.
-It only shows this information to accounts with the Admin ranking.
-Administrators can add or remove users to or from groups. They can also promote users to leadership positions on that group or strip users of that ranking.
+This page shows information relevant to a superuser.
+It only shows this information to accounts with either a superuser or admin ranking.
+Superusers can add or remove users to or from groups. Unlike administrators, however, they cannot assign or remove group leadership positions.
 */
 
 ?>
