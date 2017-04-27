@@ -73,6 +73,20 @@ and
 
 - Test that your installation was successful by navigating to the 'Training_site/' directory in your browser, usually [http://localhost/sqsg6/Training_site/](http://localhost/sqsg6/Training_site/) if you are running the LAMP stack on your local machine. This URL should load 'index.php' automatically.
 
+- Create a file in the root /sqsg6/ directory named 'config.ini' (without quotes).
+
+- In 'config.ini' write one line with the format
+
+> password = "Demo Password"
+
+Where "Demo Password" is the root password to your MySQL database. Keep the quotes in the config.ini file. If you wish to use a different user, edit the 'sql_connector.php' file to use a differnt string other than 'root' on the line containing 'DB_USER'.
+
+- Test the connection to the SQL database by running
+
+> php sql_connector.php
+
+from the command line. The file should execute without error.
+
 
 ## Continued Development
 
