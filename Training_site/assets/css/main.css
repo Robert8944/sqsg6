@@ -172,3 +172,13 @@ form input {
 	justify-content:center;
 	align-items:center;
 }
+
+
+.col-sm-7b {
+	padding-left:23px;
+	width: 10%;
+}
+
+.col-sm-7c {
+	width: 50%;
+}
