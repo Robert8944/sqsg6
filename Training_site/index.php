@@ -1,7 +1,7 @@
 
-<?php 
+<?php
 /** index.php
-This file is the homepage for the website. 
+This file is the homepage for the website.
 If the website visitor is not logged in, it gives login instructions (for now).
 If the visitor is logged in, the homepage presents a form for entering phone numbers to associate with the user account.
 
@@ -34,6 +34,15 @@ if(isset($_SESSION['SubscriptionReport']))
 <html>
 <!DOCTYPE html>
 <div id="home_page">
+	<!--
+	The container classes used here and throughout this codebase are responsible
+	for most of the heavy lifting in regards to responsive styling. Container classes
+	are defined in the bootstrap code refrenced in assets/js/ and assets/css.
+
+	Items within the containers have their own classes and IDs with CSS rules.
+	Each div, label, and all other HTML tags either need specific CSS rules to
+	display correctly, or need to be wrapped inside an additional div with rules.
+	-->
   <body class="container">
     <div>
 	<?php
@@ -53,24 +62,23 @@ if(isset($_SESSION['SubscriptionReport']))
 		{
 			include("phone_signup.php");
 		}
-		
+
 		else
 		{
 			/*Assume that phone numbers ought to be associated with account names. If not, a "No Association" account could be associated with those phone numbers added when no one was logged in. (Accounts can have more than one phone number).
 		In the case that the user is logged in, what should be displayed instead? A description of the website?
 		*/
-			
+
 			include("site_description_paragraph.php");
 		}
-		
+
 	?>
-		
+
 	</div>
   </body>
 <?php
 /* Currently the footer is just a simple example of the features_loader function. */
-include "footer.php"; 
+include "footer.php";
 ?>
 </div>
 </html>
-

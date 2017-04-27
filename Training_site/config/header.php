@@ -19,6 +19,17 @@
 
   <body>
 
+    <!--
+      This container also has specific CSS rules defined in main.css, identified
+      by the id="heading2", in addition to the base level bootstrap CSS styling.
+
+      These rules allow the heading to properly order the multiple pieces of content
+      within (all the buttons and welcom message). These items need to be ordered
+      horizontally rather than vertically to all fit in the top of the page.
+
+      When the viewport's width decreases to a point that there is not enough space
+      for the heading the Bootstrap rules will reorder the content vertically.
+    -->
     <div class="container" id="heading2">
 
       <!-- Static navbar -->

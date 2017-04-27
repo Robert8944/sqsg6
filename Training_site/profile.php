@@ -148,6 +148,8 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			feature_loader("phonedisplay", $_SESSION["user"]);
 
 	//Load address information
+  // within the feature loader file for mailing address specific attention is
+  // paid to displaying child elements of the mailing header.
 			feature_loader("addressdisplay", $_SESSION["user"]);
 	?>
 
