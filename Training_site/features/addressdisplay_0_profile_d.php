@@ -37,7 +37,7 @@ require_once('/var/www/html/sqsg6/sql_connector.php');
 				echo '<br>';
 				echo '<input id="zip" type="zip" name="zip" value="'.$zip.'" disabled>';
                                 echo '<input id="zipButton" type="button" value="Edit">';
-                                echo '<script>';
+                                echo '<script>
                                         var snb = document.getElementById("street_numButton");
                                         var sna = document.getElementById("street_num");
                                         snb.addEventListener("click", function(){
