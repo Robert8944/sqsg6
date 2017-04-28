@@ -1,4 +1,3 @@
-
 <?php
 /**
 For users logged in, this page presents information describing that user.
@@ -72,22 +71,22 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 				header("Refresh:0");
 			}
 			else if ($original_email != $email) {
-				echo "<div class='container' id='error'Darn! that email is taken :( Try another!</div>";
+				echo "Darn! that email is taken :( Try another!";
 			}
 
 		}
 		else {
-			echo "<div class='container' id='error'>Could not update information as requested. Ensure email and name are entered correctly.</div>";
+			//echo "Could not update information as requested. Ensure email and name are entered correctly.";
 		}
 	}
 ?>
-
-
 <html>
+<script type=text/javascript src="/sqsg6/Training_site/assets/js/jquery.min.js"></script>
 <div class="container">
 	<form  class= "form-horizontal"action="" method="post">
 		<?php
 			$UID = $_SESSION['user'];
+			//$_POST['edit'] = 'user';
 
 	//Display name
 			$query = "select Name, Email, level from user where UID = ?";
@@ -101,23 +100,71 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Name</label>';
 			echo '<div class="col-sm-5">';
-			if(isset($_POST['edit'])) {
-				echo '<input type="name" name="name" size="30" value="'.$name.'" />';
-			}
-			else {
-				echo $name;
-			}
+			//if(isset($_POST['edit'])) {
+			//echo '<input type="name" name="name" size="30" value="'.$name.'" />';
+			echo '<input id="name" type="name" name="name" value="'.$name.'" disabled>';
+			echo '<input id="nameButton" type="button" value="Edit">';
+			echo '<script>
+        			var nb = document.getElementById("nameButton");
+        			var na = document.getElementById("name");
+       				nb.addEventListener("click", function(){
+               				if(nb.value=="Edit"){
+               	        			na.disabled = false;
+						na.focus();
+						nb.value="Save";
+               				}else{
+						$.ajax({
+							type : "POST",
+							url  : "saveprofile.php",
+							data : {uid:'.$UID.', table:"user", item:"Name", value:na.value},
+							success : function(data){
+								//alert(data);
+							}
+						});
+                       				na.disabled = true;
+                       				nb.value="Edit";
+               				}
+       				});
+			</script>';
+			//}
+			//else {
+			//	echo $name;
+			//}
 			echo '</div></div>';
 	//Display Email
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Email</label>';
 			echo '<div class="col-sm-5">';
-			if(isset($_POST['edit'])) {
-				echo '<input type="email" name="email" size="30" value="'.$email.'" />';
-			}
-			else {
-				echo $email;
-			}
+			//if(isset($_POST['edit'])) {
+			//echo '<input type="email" name="email" size="30" value="'.$email.'" />';
+			echo '<input id="email" type="email" name="email" value="'.$email.'" disabled>';
+			echo '<input id="emailButton" type="button" value="Edit">';
+			echo '<script>
+        			var eb = document.getElementById("emailButton");
+        			var ea = document.getElementById("email");
+       				eb.addEventListener("click", function(){
+               				if(eb.value=="Edit"){
+               	        			ea.disabled = false;
+						ea.focus();
+						eb.value="Save";
+               				}else{
+						$.ajax({
+							type : "POST",
+							url  : "saveprofile.php",
+							data : {uid:'.$UID.', table:"user", item:"Email", value:ea.value},
+							success : function(data){
+								//alert(data);
+							}
+						});
+                       				ea.disabled = true;
+                       				eb.value="Edit";
+               				}
+       				});
+			</script>';
+			//}
+			//else {
+			//	echo $email;
+			//}
 			echo '</div></div>';
 
 	//Display Rank
@@ -132,16 +179,15 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 			echo '<div id="inputbox" class="form-group">';
 			echo '<label class="control-label col-sm-5" >Rank</label>';
 			echo '<div class="col-sm-5">';
-			if(isset($_POST['edit'])) {
-				echo $rank;
-			}
-			else {
-				echo $rank;
-			}
+			//if(isset($_POST['edit'])) {
+			echo $rank;
+			//}
+			//else {
+			//	echo $rank;
+			//}
 			echo '</div></div>';
 
 	//Load group information
-
 			feature_loader("groupdisplay", $_SESSION["user"]);
 
 	//Load phone information
@@ -149,19 +195,21 @@ if (!isset($_SESSION['user'])){	//redirects to index page if user isn't a user
 
 	//Load address information
 			feature_loader("addressdisplay", $_SESSION["user"]);
+
 	?>
 
 			<div id="inputbox" class="form-group">
 				<div class="control-label col-sm-6" id="centertext">
 					<?php
-						if (isset($_POST['edit'])) {
-							echo '<input class="btn btn-default" type="submit" name="submit" value="Save Information"/>';
-						}
-						else {
-							echo '<input class="btn btn-default" type="submit" name="edit" value="Edit Profile"/>';
-						}
+						//if (isset($_POST['edit'])) {
+						//	echo '<input class="btn btn-default" type="submit" name="submit" value="Save Information"/>';
+						//}
+						//else {
+						//	echo '<input class="btn btn-default" type="submit" name="edit" value="Edit Profile"/>';
+						//}
 					?>
 				</div>
 			</div>
 		</div>
 </form>
+
