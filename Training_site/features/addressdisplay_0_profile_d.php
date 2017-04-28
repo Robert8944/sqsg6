@@ -1,7 +1,8 @@
-<?php 
+<?php
 session_start();
 require_once('/var/www/html/sqsg6/sql_connector.php');
 	$UID = $_SESSION["user"];
+
 	//Load address information
 			$state = "N/A";
 			$city = "N/A";
@@ -16,11 +17,26 @@ require_once('/var/www/html/sqsg6/sql_connector.php');
 			$stmt->bind_result($state, $city, $zip, $street, $street_num);
 			$stmt->fetch();
 			$stmt->close();
+
 			echo '<div id="inputbox" class="form-group">';
-			echo '<label class="control-label col-sm-5" >Mail address</label>';
+			echo '<label class="control-label col-sm-5" id="up-label" >Mail address</label>';
 			echo '<div class="col-sm-5">';
+
 			if($street == "N/A"){
 				echo "None on file";
+
+			if(isset($_POST['edit'])) {
+			//	echo '<input type="email" name="email" size="30" value="'.$email.'" />';
+				echo $street_num;
+				echo " ";
+				echo $street;
+				echo "<br />";
+				echo $city;
+				echo ", ";
+				echo $state;
+				echo " ";
+				echo $zip;
+
 			}
 			else{
 				echo '<input id="street_num" type="street_num" name="street_num" value="'.$street_num.'" disabled>';
